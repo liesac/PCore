@@ -1,0 +1,52 @@
+﻿<objects xmlns="http://www.springframework.net">
+
+  <!--Controllers Layers-->
+
+  <!--Controllers Layers Application-->
+
+  <!--Business Logic Layers--> 
+  <object name="AuthenticationServices" type="SecurityManagment.Business.Services.Implementation.AuthenticationServices, SecurityManagment.Business" singleton="false" >
+    <property name="ApplicationRepository" ref="ApplicationRepository" />
+    <property name="UserApplicationRepository" ref="UserApplicationRepository" />
+    <property name="ApplicationUserRoleRepository" ref="ApplicationUserRoleRepository" />
+    <property name="LastLoginRepository" ref="LastLoginRepository" />
+    <property name="CompanyApplicationRepository" ref="CompanyApplicationRepository" />
+    <property name="ApplicationRoleRepository" ref="ApplicationRoleRepository" />
+  </object>
+
+  <object name="NotificationsServices" type="SecurityManagment.Business.Services.Implementation.NotificationsServices, SecurityManagment.Business" singleton="false" >
+    <property name="UserApplicationRepository" ref="UserApplicationRepository" />
+    <property name="AssociateUsersGroupRepository" ref="AssociateUsersGroupRepository" />
+    <property name="NotificationsSettingsRepository" ref="NotificationsSettingsRepository" />
+    <property name="NotificationsRepository" ref="NotificationsRepository" />
+  </object>
+
+  <!--Data Access Layers-->
+  <object name="ApplicationRepository" type="SecurityManagment.Data.Repositories.SecurityManagment.Implementation.ApplicationRepository, SecurityManagment.Data" singleton="false" >
+  </object>
+  
+  <object name="UserApplicationRepository" type="SecurityManagment.Data.Repositories.SecurityManagment.Implementation.UserApplicationRepository, SecurityManagment.Data" singleton="false" >
+  </object>
+  
+  <object name="ApplicationUserRoleRepository" type="SecurityManagment.Data.Repositories.SecurityManagment.Implementation.ApplicationUserRoleRepository, SecurityManagment.Data" singleton="false" >
+  </object>
+
+  <object name="LastLoginRepository" type="SecurityManagment.Data.Repositories.SecurityManagment.Implementation.LastLoginRepository, SecurityManagment.Data" singleton="false" >
+  </object>
+
+  <object name="AssociateUsersGroupRepository" type="SecurityManagment.Data.Repositories.SecurityManagment.Implementation.AssociateUsersGroupRepository, SecurityManagment.Data" singleton="false" >
+  </object>
+
+  <object name="NotificationsSettingsRepository" type="SecurityManagment.Data.Repositories.SecurityManagment.Implementation.NotificationsSettingsRepository, SecurityManagment.Data" singleton="false" >
+  </object>
+
+  <object name="NotificationsRepository" type="SecurityManagment.Data.Repositories.SecurityManagment.Implementation.NotificationsRepository, SecurityManagment.Data" singleton="false" >
+  </object>
+
+  <object name="CompanyApplicationRepository" type="SecurityManagment.Data.Repositories.SecurityManagment.Implementation.CompanyApplicationRepository, SecurityManagment.Data" singleton="false" >
+  </object>
+
+  <object name="ApplicationRoleRepository" type="SecurityManagment.Data.Repositories.SecurityManagment.Implementation.ApplicationRoleRepository, SecurityManagment.Data" singleton="false" >
+  </object>
+
+</objects>

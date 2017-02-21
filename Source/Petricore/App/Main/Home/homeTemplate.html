@@ -1,0 +1,25 @@
+<div >
+  <div id="wrapper">
+
+    <!-- Topbar-wrapper -->
+    <nav ui-view="topBar" class="user-header"></nav>
+    <!-- /#topbar-wrapper -->
+
+    <div ui-view="menu"></div>
+
+    <!-- Features Content -->
+    <div id="page-content-wrapper" class="container-fluid">
+      <div class="row">
+        <div ui-view></div>
+      </div>
+
+    </div>
+    <!-- /#features-content-wrapper -->
+
+    <!-- Footer Content -->
+     <div ui-view="footer"></div>
+    <!-- /#Footer-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+</div>

@@ -1,0 +1,9 @@
+<div class="autocompleteDirective">
+    <input type="text" list="payload" id="{{id}}Autocomplete" name="{{id}}Autocomplete" placeholder="{{placeholder}}" ng-model="idEntity" ng-class=" markedAsRequired('{{id}}Autocomplete') == true ? 'required' : ''" minlength="{{minLength}}" maxlength="{{maxLength}}"  class="form-control" data-isRequired="{{isRequired}}" data-typeValidation="{{typeValidation}}" ui-validate="{taken : 'validation($value, \'{{id}}Autocomplete\')'}" custom-Validation cuv-Config="configCustomValidation" ng-change="inputChangeHandler(searchString)" uppercase>
+    <datalist id="payload">
+        <option ng-repeat="item in payload track by $index" value="{{item[apiConfig.propertyToShow]}}" id="{{item.idState}}"></option>
+    </datalist>
+    <span ng-show="markedAsRequired('{{id}}Autocomplete') == true" class="required">
+        {{configValidation[(id+'Autocomplete')].messageError}}
+    </span>
+</div>

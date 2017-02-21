@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="afba5fe45fcf4408bc5bf2846645e87f" Name="Diagram1" ZoomLevel="10">
+        <EntityTypeShape EntityType="SecurityManagmentModel.Application" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="SecurityManagmentModel.ApplicationRole" Width="1.5" PointX="3" PointY="18.5" />
+        <EntityTypeShape EntityType="SecurityManagmentModel.ApplicationUserRole" Width="1.5" PointX="5.25" PointY="11.5" />
+        <EntityTypeShape EntityType="SecurityManagmentModel.AssociateUsersGroup" Width="1.5" PointX="8.25" PointY="14.25" />
+        <EntityTypeShape EntityType="SecurityManagmentModel.Company" Width="1.5" PointX="0.75" PointY="8.125" />
+        <EntityTypeShape EntityType="SecurityManagmentModel.CompanyApplication" Width="1.5" PointX="3" PointY="8.25" />
+        <EntityTypeShape EntityType="SecurityManagmentModel.Group" Width="1.5" PointX="1.5" PointY="25.375" />
+        <EntityTypeShape EntityType="SecurityManagmentModel.GUI" Width="1.5" PointX="5.25" PointY="4.125" />
+        <EntityTypeShape EntityType="SecurityManagmentModel.LastLogin" Width="1.5" PointX="8.25" PointY="11.125" />
+        <EntityTypeShape EntityType="SecurityManagmentModel.MenuOption" Width="1.5" PointX="10.75" PointY="9.75" />
+        <EntityTypeShape EntityType="SecurityManagmentModel.Notifications" Width="1.5" PointX="3" PointY="22" />
+        <EntityTypeShape EntityType="SecurityManagmentModel.NotificationsSettings" Width="1.5" PointX="5.25" PointY="15.5" />
+        <EntityTypeShape EntityType="SecurityManagmentModel.Page" Width="1.5" PointX="3" PointY="3.875" />
+        <EntityTypeShape EntityType="SecurityManagmentModel.Role" Width="1.5" PointX="0.75" PointY="18.75" />
+        <EntityTypeShape EntityType="SecurityManagmentModel.SecurityGUI" Width="1.5" PointX="7.5" PointY="4.25" />
+        <EntityTypeShape EntityType="SecurityManagmentModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SecurityManagmentModel.TableRef" Width="1.5" PointX="0.75" PointY="22" />
+        <EntityTypeShape EntityType="SecurityManagmentModel.UserApplication" Width="1.5" PointX="3" PointY="13.125" />
+        <EntityTypeShape EntityType="SecurityManagmentModel.UserGroup" Width="1.5" PointX="6" PointY="8.25" />
+        <AssociationConnector Association="SecurityManagmentModel.FK_ApplicationRole_Application" />
+        <AssociationConnector Association="SecurityManagmentModel.FK_CompanyApplication_Application" />
+        <AssociationConnector Association="SecurityManagmentModel.FK_LastLogin_Application" />
+        <AssociationConnector Association="SecurityManagmentModel.FK_NotificationsSettings_Application" />
+        <AssociationConnector Association="SecurityManagmentModel.FK_Page_Application" />
+        <AssociationConnector Association="SecurityManagmentModel.FK_ApplicationRole_Role" />
+        <AssociationConnector Association="SecurityManagmentModel.FK_ApplicationUserRole_ApplicationRole" />
+        <AssociationConnector Association="SecurityManagmentModel.FK_MenuOption_ApplicationRole" />
+        <AssociationConnector Association="SecurityManagmentModel.FK_ApplicationUserRole_Company" />
+        <AssociationConnector Association="SecurityManagmentModel.FK_ApplicationUserRole_UserApplication" />
+        <AssociationConnector Association="SecurityManagmentModel.FK_AssociateUsersGroup_AssociateUsersGroup" />
+        <AssociationConnector Association="SecurityManagmentModel.FK_AssociateUsersGroup_UserApplication" />
+        <AssociationConnector Association="SecurityManagmentModel.FK_CompanyApplication_Company" />
+        <AssociationConnector Association="SecurityManagmentModel.FK_UserApplication_Company" />
+        <AssociationConnector Association="SecurityManagmentModel.FK_Reference_Group" />
+        <AssociationConnector Association="SecurityManagmentModel.FK_GUI_Page" />
+        <AssociationConnector Association="SecurityManagmentModel.FK_SecurityGUI_GUI" />
+        <AssociationConnector Association="SecurityManagmentModel.FK_LastLogin_UserApplication" />
+        <AssociationConnector Association="SecurityManagmentModel.FK_MenuOption_Page" />
+        <AssociationConnector Association="SecurityManagmentModel.FK_MenuOption_Page1" />
+        <AssociationConnector Association="SecurityManagmentModel.FK_MenuOption_SecurityGUI" />
+        <AssociationConnector Association="SecurityManagmentModel.FK_Notifications_TableRef" />
+        <AssociationConnector Association="SecurityManagmentModel.FK_NotificationsSettings_Notifications" />
+        <AssociationConnector Association="SecurityManagmentModel.FK_NotificationsSettings_UserApplication" />
+        <AssociationConnector Association="SecurityManagmentModel.FK_NotificationsSettings_UserGroup" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

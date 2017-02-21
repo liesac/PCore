@@ -1,0 +1,17 @@
+<form class="container-fluid" name="loginForm">
+    <div class="row">
+        <label for="user" class="col-sm-6 col-form-label ">User</label>
+        <div class="col-sm-6 text-left">
+            <input id="user" type="text" class="form-control" ng-model="user" data-isRequired="true" custom-validation-ceo>
+        </div>
+    </div>
+    <div class="row">
+        <label for="password" class="col-sm-6">Password</label>
+        <div class="col-sm-6 text-left">
+            <input id="password" type="text" class="form-control" ng-model="password" data-isRequired="true" custom-validation-ceo>
+        </div>
+    </div>
+    <div class="row">
+        <button type="button" ng-click="onLogin()">Login</button>
+    </div>
+</form>

@@ -1,0 +1,1507 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SecurityManagmentModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Application">
+          <Key>
+            <PropertyRef Name="IdApplication" />
+          </Key>
+          <Property Name="IdApplication" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ApplicationName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ApplicationDescription" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="ValidateActiveDirectory" Type="bit" Nullable="false" />
+          <Property Name="ImageUrl" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="ApplicationRole">
+          <Key>
+            <PropertyRef Name="IdApplicationRole" />
+          </Key>
+          <Property Name="IdApplicationRole" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdRole" Type="bigint" Nullable="false" />
+          <Property Name="IdApplication" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ApplicationUserRole">
+          <Key>
+            <PropertyRef Name="IdApplicationUserRole" />
+          </Key>
+          <Property Name="IdApplicationUserRole" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdCompany" Type="bigint" Nullable="false" />
+          <Property Name="IdApplicationRole" Type="bigint" Nullable="false" />
+          <Property Name="IdUserApplication" Type="bigint" Nullable="false" />
+          <Property Name="State" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AssociateUsersGroup">
+          <Key>
+            <PropertyRef Name="IdAssociateUsersGroup" />
+          </Key>
+          <Property Name="IdAssociateUsersGroup" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdUserGroup" Type="int" Nullable="false" />
+          <Property Name="IdUserApplication" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="IdCompany" />
+          </Key>
+          <Property Name="IdCompany" Type="bigint" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ValidThru" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CompanyApplication">
+          <Key>
+            <PropertyRef Name="IdCompanyApplication" />
+          </Key>
+          <Property Name="IdCompanyApplication" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdCompany" Type="bigint" Nullable="false" />
+          <Property Name="IdApplication" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="IdGroup" />
+          </Key>
+          <Property Name="IdGroup" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DescriptionGroup" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GUI">
+          <Key>
+            <PropertyRef Name="IdGUI" />
+          </Key>
+          <Property Name="IdGUI" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdentifierGUI" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="IdPage" Type="bigint" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="LastLogin">
+          <Key>
+            <PropertyRef Name="IdLastLogin" />
+          </Key>
+          <Property Name="IdLastLogin" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdApplication" Type="bigint" Nullable="false" />
+          <Property Name="IdUserApplication" Type="bigint" Nullable="false" />
+          <Property Name="LastLoginDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MenuOption">
+          <Key>
+            <PropertyRef Name="IdMenuOption" />
+          </Key>
+          <Property Name="IdMenuOption" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdPage" Type="bigint" Nullable="false" />
+          <Property Name="IdSecurityGUI" Type="bigint" />
+          <Property Name="IdMenuOptionFather" Type="bigint" />
+          <Property Name="IdApplicationRole" Type="bigint" Nullable="false" />
+          <Property Name="PageLock" Type="bit" Nullable="false" />
+          <Property Name="Target" Type="varchar" MaxLength="20" />
+          <Property Name="IsMenu" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Notifications">
+          <Key>
+            <PropertyRef Name="IdNotification" />
+          </Key>
+          <Property Name="IdNotification" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdNotificationType" Type="bigint" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="50" />
+          <Property Name="Description" Type="varchar" MaxLength="200" />
+          <Property Name="Url" Type="varchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="NotificationsSettings">
+          <Key>
+            <PropertyRef Name="IdNotificationsSettings" />
+          </Key>
+          <Property Name="IdNotificationsSettings" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdApplication" Type="bigint" Nullable="false" />
+          <Property Name="IdUserApplication" Type="bigint" />
+          <Property Name="IdUserGroup" Type="int" />
+          <Property Name="IdNotification" Type="bigint" Nullable="false" />
+          <Property Name="StartingDate" Type="datetime" Nullable="false" />
+          <Property Name="SummaryEndDate" Type="datetime" Nullable="false" />
+          <Property Name="DashboardEndDate" Type="datetime" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Page">
+          <Key>
+            <PropertyRef Name="IdPage" />
+          </Key>
+          <Property Name="IdPage" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Url" Type="varchar" MaxLength="400" Nullable="false" />
+          <Property Name="IdApplication" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="IdRole" />
+          </Key>
+          <Property Name="IdRole" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="RoleDescription" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="ImageUrl" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="SecurityGUI">
+          <Key>
+            <PropertyRef Name="IdSecurityGUI" />
+          </Key>
+          <Property Name="IdSecurityGUI" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdGUI" Type="bigint" Nullable="false" />
+          <Property Name="ControlLock" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TableRef">
+          <Key>
+            <PropertyRef Name="IdReference" />
+          </Key>
+          <Property Name="IdReference" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdGroup" Type="bigint" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="Value" Type="varchar" MaxLength="32" />
+        </EntityType>
+        <EntityType Name="UserApplication">
+          <Key>
+            <PropertyRef Name="IdUserApplication" />
+          </Key>
+          <Property Name="IdUserApplication" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Surname" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Gender" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="DocumentType" Type="bigint" />
+          <Property Name="DocumentNumber" Type="varchar" MaxLength="20" />
+          <Property Name="EffectiveDate" Type="datetime" />
+          <Property Name="UserName" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="UserPassword" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="State" Type="bit" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="IdCompany" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserGroup">
+          <Key>
+            <PropertyRef Name="IdUserGroup" />
+          </Key>
+          <Property Name="IdUserGroup" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="100" />
+          <Property Name="Description" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <Association Name="FK_ApplicationRole_Application">
+          <End Role="Application" Type="Self.Application" Multiplicity="1" />
+          <End Role="ApplicationRole" Type="Self.ApplicationRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Application">
+              <PropertyRef Name="IdApplication" />
+            </Principal>
+            <Dependent Role="ApplicationRole">
+              <PropertyRef Name="IdApplication" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ApplicationRole_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="ApplicationRole" Type="Self.ApplicationRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="IdRole" />
+            </Principal>
+            <Dependent Role="ApplicationRole">
+              <PropertyRef Name="IdRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ApplicationUserRole_ApplicationRole">
+          <End Role="ApplicationRole" Type="Self.ApplicationRole" Multiplicity="1" />
+          <End Role="ApplicationUserRole" Type="Self.ApplicationUserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationRole">
+              <PropertyRef Name="IdApplicationRole" />
+            </Principal>
+            <Dependent Role="ApplicationUserRole">
+              <PropertyRef Name="IdApplicationRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ApplicationUserRole_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="1" />
+          <End Role="ApplicationUserRole" Type="Self.ApplicationUserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="IdCompany" />
+            </Principal>
+            <Dependent Role="ApplicationUserRole">
+              <PropertyRef Name="IdCompany" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ApplicationUserRole_UserApplication">
+          <End Role="UserApplication" Type="Self.UserApplication" Multiplicity="1" />
+          <End Role="ApplicationUserRole" Type="Self.ApplicationUserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserApplication">
+              <PropertyRef Name="IdUserApplication" />
+            </Principal>
+            <Dependent Role="ApplicationUserRole">
+              <PropertyRef Name="IdUserApplication" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssociateUsersGroup_AssociateUsersGroup">
+          <End Role="UserGroup" Type="Self.UserGroup" Multiplicity="1" />
+          <End Role="AssociateUsersGroup" Type="Self.AssociateUsersGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserGroup">
+              <PropertyRef Name="IdUserGroup" />
+            </Principal>
+            <Dependent Role="AssociateUsersGroup">
+              <PropertyRef Name="IdUserGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssociateUsersGroup_UserApplication">
+          <End Role="UserApplication" Type="Self.UserApplication" Multiplicity="1" />
+          <End Role="AssociateUsersGroup" Type="Self.AssociateUsersGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserApplication">
+              <PropertyRef Name="IdUserApplication" />
+            </Principal>
+            <Dependent Role="AssociateUsersGroup">
+              <PropertyRef Name="IdUserApplication" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompanyApplication_Application">
+          <End Role="Application" Type="Self.Application" Multiplicity="1" />
+          <End Role="CompanyApplication" Type="Self.CompanyApplication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Application">
+              <PropertyRef Name="IdApplication" />
+            </Principal>
+            <Dependent Role="CompanyApplication">
+              <PropertyRef Name="IdApplication" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompanyApplication_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="1" />
+          <End Role="CompanyApplication" Type="Self.CompanyApplication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="IdCompany" />
+            </Principal>
+            <Dependent Role="CompanyApplication">
+              <PropertyRef Name="IdCompany" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GUI_Page">
+          <End Role="Page" Type="Self.Page" Multiplicity="1" />
+          <End Role="GUI" Type="Self.GUI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Page">
+              <PropertyRef Name="IdPage" />
+            </Principal>
+            <Dependent Role="GUI">
+              <PropertyRef Name="IdPage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LastLogin_Application">
+          <End Role="Application" Type="Self.Application" Multiplicity="1" />
+          <End Role="LastLogin" Type="Self.LastLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Application">
+              <PropertyRef Name="IdApplication" />
+            </Principal>
+            <Dependent Role="LastLogin">
+              <PropertyRef Name="IdApplication" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LastLogin_UserApplication">
+          <End Role="UserApplication" Type="Self.UserApplication" Multiplicity="1" />
+          <End Role="LastLogin" Type="Self.LastLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserApplication">
+              <PropertyRef Name="IdUserApplication" />
+            </Principal>
+            <Dependent Role="LastLogin">
+              <PropertyRef Name="IdUserApplication" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MenuOption_ApplicationRole">
+          <End Role="ApplicationRole" Type="Self.ApplicationRole" Multiplicity="1" />
+          <End Role="MenuOption" Type="Self.MenuOption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationRole">
+              <PropertyRef Name="IdApplicationRole" />
+            </Principal>
+            <Dependent Role="MenuOption">
+              <PropertyRef Name="IdApplicationRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MenuOption_Page">
+          <End Role="Page" Type="Self.Page" Multiplicity="1" />
+          <End Role="MenuOption" Type="Self.MenuOption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Page">
+              <PropertyRef Name="IdPage" />
+            </Principal>
+            <Dependent Role="MenuOption">
+              <PropertyRef Name="IdPage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MenuOption_Page1">
+          <End Role="Page" Type="Self.Page" Multiplicity="0..1" />
+          <End Role="MenuOption" Type="Self.MenuOption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Page">
+              <PropertyRef Name="IdPage" />
+            </Principal>
+            <Dependent Role="MenuOption">
+              <PropertyRef Name="IdMenuOptionFather" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MenuOption_SecurityGUI">
+          <End Role="SecurityGUI" Type="Self.SecurityGUI" Multiplicity="0..1" />
+          <End Role="MenuOption" Type="Self.MenuOption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SecurityGUI">
+              <PropertyRef Name="IdSecurityGUI" />
+            </Principal>
+            <Dependent Role="MenuOption">
+              <PropertyRef Name="IdSecurityGUI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notifications_TableRef">
+          <End Role="TableRef" Type="Self.TableRef" Multiplicity="1" />
+          <End Role="Notifications" Type="Self.Notifications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TableRef">
+              <PropertyRef Name="IdReference" />
+            </Principal>
+            <Dependent Role="Notifications">
+              <PropertyRef Name="IdNotificationType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NotificationsSettings_Application">
+          <End Role="Application" Type="Self.Application" Multiplicity="1" />
+          <End Role="NotificationsSettings" Type="Self.NotificationsSettings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Application">
+              <PropertyRef Name="IdApplication" />
+            </Principal>
+            <Dependent Role="NotificationsSettings">
+              <PropertyRef Name="IdApplication" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NotificationsSettings_Notifications">
+          <End Role="Notifications" Type="Self.Notifications" Multiplicity="1" />
+          <End Role="NotificationsSettings" Type="Self.NotificationsSettings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Notifications">
+              <PropertyRef Name="IdNotification" />
+            </Principal>
+            <Dependent Role="NotificationsSettings">
+              <PropertyRef Name="IdNotification" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NotificationsSettings_UserApplication">
+          <End Role="UserApplication" Type="Self.UserApplication" Multiplicity="0..1" />
+          <End Role="NotificationsSettings" Type="Self.NotificationsSettings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserApplication">
+              <PropertyRef Name="IdUserApplication" />
+            </Principal>
+            <Dependent Role="NotificationsSettings">
+              <PropertyRef Name="IdUserApplication" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NotificationsSettings_UserGroup">
+          <End Role="UserGroup" Type="Self.UserGroup" Multiplicity="0..1" />
+          <End Role="NotificationsSettings" Type="Self.NotificationsSettings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserGroup">
+              <PropertyRef Name="IdUserGroup" />
+            </Principal>
+            <Dependent Role="NotificationsSettings">
+              <PropertyRef Name="IdUserGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Page_Application">
+          <End Role="Application" Type="Self.Application" Multiplicity="1" />
+          <End Role="Page" Type="Self.Page" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Application">
+              <PropertyRef Name="IdApplication" />
+            </Principal>
+            <Dependent Role="Page">
+              <PropertyRef Name="IdApplication" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reference_Group">
+          <End Role="Group" Type="Self.Group" Multiplicity="1" />
+          <End Role="TableRef" Type="Self.TableRef" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="IdGroup" />
+            </Principal>
+            <Dependent Role="TableRef">
+              <PropertyRef Name="IdGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SecurityGUI_GUI">
+          <End Role="GUI" Type="Self.GUI" Multiplicity="1" />
+          <End Role="SecurityGUI" Type="Self.SecurityGUI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GUI">
+              <PropertyRef Name="IdGUI" />
+            </Principal>
+            <Dependent Role="SecurityGUI">
+              <PropertyRef Name="IdGUI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserApplication_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="1" />
+          <End Role="UserApplication" Type="Self.UserApplication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="IdCompany" />
+            </Principal>
+            <Dependent Role="UserApplication">
+              <PropertyRef Name="IdCompany" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SecurityManagmentModelStoreContainer">
+          <EntitySet Name="Application" EntityType="Self.Application" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ApplicationRole" EntityType="Self.ApplicationRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ApplicationUserRole" EntityType="Self.ApplicationUserRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AssociateUsersGroup" EntityType="Self.AssociateUsersGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CompanyApplication" EntityType="Self.CompanyApplication" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GUI" EntityType="Self.GUI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LastLogin" EntityType="Self.LastLogin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MenuOption" EntityType="Self.MenuOption" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Notifications" EntityType="Self.Notifications" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NotificationsSettings" EntityType="Self.NotificationsSettings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Page" EntityType="Self.Page" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SecurityGUI" EntityType="Self.SecurityGUI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TableRef" EntityType="Self.TableRef" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserApplication" EntityType="Self.UserApplication" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserGroup" EntityType="Self.UserGroup" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ApplicationRole_Application" Association="Self.FK_ApplicationRole_Application">
+            <End Role="Application" EntitySet="Application" />
+            <End Role="ApplicationRole" EntitySet="ApplicationRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ApplicationRole_Role" Association="Self.FK_ApplicationRole_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="ApplicationRole" EntitySet="ApplicationRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ApplicationUserRole_ApplicationRole" Association="Self.FK_ApplicationUserRole_ApplicationRole">
+            <End Role="ApplicationRole" EntitySet="ApplicationRole" />
+            <End Role="ApplicationUserRole" EntitySet="ApplicationUserRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ApplicationUserRole_Company" Association="Self.FK_ApplicationUserRole_Company">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="ApplicationUserRole" EntitySet="ApplicationUserRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ApplicationUserRole_UserApplication" Association="Self.FK_ApplicationUserRole_UserApplication">
+            <End Role="UserApplication" EntitySet="UserApplication" />
+            <End Role="ApplicationUserRole" EntitySet="ApplicationUserRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssociateUsersGroup_AssociateUsersGroup" Association="Self.FK_AssociateUsersGroup_AssociateUsersGroup">
+            <End Role="UserGroup" EntitySet="UserGroup" />
+            <End Role="AssociateUsersGroup" EntitySet="AssociateUsersGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssociateUsersGroup_UserApplication" Association="Self.FK_AssociateUsersGroup_UserApplication">
+            <End Role="UserApplication" EntitySet="UserApplication" />
+            <End Role="AssociateUsersGroup" EntitySet="AssociateUsersGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompanyApplication_Application" Association="Self.FK_CompanyApplication_Application">
+            <End Role="Application" EntitySet="Application" />
+            <End Role="CompanyApplication" EntitySet="CompanyApplication" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompanyApplication_Company" Association="Self.FK_CompanyApplication_Company">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="CompanyApplication" EntitySet="CompanyApplication" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GUI_Page" Association="Self.FK_GUI_Page">
+            <End Role="Page" EntitySet="Page" />
+            <End Role="GUI" EntitySet="GUI" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LastLogin_Application" Association="Self.FK_LastLogin_Application">
+            <End Role="Application" EntitySet="Application" />
+            <End Role="LastLogin" EntitySet="LastLogin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LastLogin_UserApplication" Association="Self.FK_LastLogin_UserApplication">
+            <End Role="UserApplication" EntitySet="UserApplication" />
+            <End Role="LastLogin" EntitySet="LastLogin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MenuOption_ApplicationRole" Association="Self.FK_MenuOption_ApplicationRole">
+            <End Role="ApplicationRole" EntitySet="ApplicationRole" />
+            <End Role="MenuOption" EntitySet="MenuOption" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MenuOption_Page" Association="Self.FK_MenuOption_Page">
+            <End Role="Page" EntitySet="Page" />
+            <End Role="MenuOption" EntitySet="MenuOption" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MenuOption_Page1" Association="Self.FK_MenuOption_Page1">
+            <End Role="Page" EntitySet="Page" />
+            <End Role="MenuOption" EntitySet="MenuOption" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MenuOption_SecurityGUI" Association="Self.FK_MenuOption_SecurityGUI">
+            <End Role="SecurityGUI" EntitySet="SecurityGUI" />
+            <End Role="MenuOption" EntitySet="MenuOption" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notifications_TableRef" Association="Self.FK_Notifications_TableRef">
+            <End Role="TableRef" EntitySet="TableRef" />
+            <End Role="Notifications" EntitySet="Notifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NotificationsSettings_Application" Association="Self.FK_NotificationsSettings_Application">
+            <End Role="Application" EntitySet="Application" />
+            <End Role="NotificationsSettings" EntitySet="NotificationsSettings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NotificationsSettings_Notifications" Association="Self.FK_NotificationsSettings_Notifications">
+            <End Role="Notifications" EntitySet="Notifications" />
+            <End Role="NotificationsSettings" EntitySet="NotificationsSettings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NotificationsSettings_UserApplication" Association="Self.FK_NotificationsSettings_UserApplication">
+            <End Role="UserApplication" EntitySet="UserApplication" />
+            <End Role="NotificationsSettings" EntitySet="NotificationsSettings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NotificationsSettings_UserGroup" Association="Self.FK_NotificationsSettings_UserGroup">
+            <End Role="UserGroup" EntitySet="UserGroup" />
+            <End Role="NotificationsSettings" EntitySet="NotificationsSettings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Page_Application" Association="Self.FK_Page_Application">
+            <End Role="Application" EntitySet="Application" />
+            <End Role="Page" EntitySet="Page" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reference_Group" Association="Self.FK_Reference_Group">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="TableRef" EntitySet="TableRef" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SecurityGUI_GUI" Association="Self.FK_SecurityGUI_GUI">
+            <End Role="GUI" EntitySet="GUI" />
+            <End Role="SecurityGUI" EntitySet="SecurityGUI" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserApplication_Company" Association="Self.FK_UserApplication_Company">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="UserApplication" EntitySet="UserApplication" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SecurityManagmentModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="SecurityManagmentEntities" annotation:LazyLoadingEnabled="false">
+          <EntitySet Name="Application" EntityType="SecurityManagmentModel.Application" />
+          <EntitySet Name="ApplicationRole" EntityType="SecurityManagmentModel.ApplicationRole" />
+          <EntitySet Name="ApplicationUserRole" EntityType="SecurityManagmentModel.ApplicationUserRole" />
+          <EntitySet Name="AssociateUsersGroup" EntityType="SecurityManagmentModel.AssociateUsersGroup" />
+          <EntitySet Name="Company" EntityType="SecurityManagmentModel.Company" />
+          <EntitySet Name="CompanyApplication" EntityType="SecurityManagmentModel.CompanyApplication" />
+          <EntitySet Name="Group" EntityType="SecurityManagmentModel.Group" />
+          <EntitySet Name="GUI" EntityType="SecurityManagmentModel.GUI" />
+          <EntitySet Name="LastLogin" EntityType="SecurityManagmentModel.LastLogin" />
+          <EntitySet Name="MenuOption" EntityType="SecurityManagmentModel.MenuOption" />
+          <EntitySet Name="Notifications" EntityType="SecurityManagmentModel.Notifications" />
+          <EntitySet Name="NotificationsSettings" EntityType="SecurityManagmentModel.NotificationsSettings" />
+          <EntitySet Name="Page" EntityType="SecurityManagmentModel.Page" />
+          <EntitySet Name="Role" EntityType="SecurityManagmentModel.Role" />
+          <EntitySet Name="SecurityGUI" EntityType="SecurityManagmentModel.SecurityGUI" />
+          <EntitySet Name="sysdiagrams" EntityType="SecurityManagmentModel.sysdiagrams" />
+          <EntitySet Name="TableRef" EntityType="SecurityManagmentModel.TableRef" />
+          <EntitySet Name="UserApplication" EntityType="SecurityManagmentModel.UserApplication" />
+          <EntitySet Name="UserGroup" EntityType="SecurityManagmentModel.UserGroup" />
+          <AssociationSet Name="FK_ApplicationRole_Application" Association="SecurityManagmentModel.FK_ApplicationRole_Application">
+            <End Role="Application" EntitySet="Application" />
+            <End Role="ApplicationRole" EntitySet="ApplicationRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompanyApplication_Application" Association="SecurityManagmentModel.FK_CompanyApplication_Application">
+            <End Role="Application" EntitySet="Application" />
+            <End Role="CompanyApplication" EntitySet="CompanyApplication" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LastLogin_Application" Association="SecurityManagmentModel.FK_LastLogin_Application">
+            <End Role="Application" EntitySet="Application" />
+            <End Role="LastLogin" EntitySet="LastLogin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NotificationsSettings_Application" Association="SecurityManagmentModel.FK_NotificationsSettings_Application">
+            <End Role="Application" EntitySet="Application" />
+            <End Role="NotificationsSettings" EntitySet="NotificationsSettings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Page_Application" Association="SecurityManagmentModel.FK_Page_Application">
+            <End Role="Application" EntitySet="Application" />
+            <End Role="Page" EntitySet="Page" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ApplicationRole_Role" Association="SecurityManagmentModel.FK_ApplicationRole_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="ApplicationRole" EntitySet="ApplicationRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ApplicationUserRole_ApplicationRole" Association="SecurityManagmentModel.FK_ApplicationUserRole_ApplicationRole">
+            <End Role="ApplicationRole" EntitySet="ApplicationRole" />
+            <End Role="ApplicationUserRole" EntitySet="ApplicationUserRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MenuOption_ApplicationRole" Association="SecurityManagmentModel.FK_MenuOption_ApplicationRole">
+            <End Role="ApplicationRole" EntitySet="ApplicationRole" />
+            <End Role="MenuOption" EntitySet="MenuOption" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ApplicationUserRole_Company" Association="SecurityManagmentModel.FK_ApplicationUserRole_Company">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="ApplicationUserRole" EntitySet="ApplicationUserRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ApplicationUserRole_UserApplication" Association="SecurityManagmentModel.FK_ApplicationUserRole_UserApplication">
+            <End Role="UserApplication" EntitySet="UserApplication" />
+            <End Role="ApplicationUserRole" EntitySet="ApplicationUserRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssociateUsersGroup_AssociateUsersGroup" Association="SecurityManagmentModel.FK_AssociateUsersGroup_AssociateUsersGroup">
+            <End Role="UserGroup" EntitySet="UserGroup" />
+            <End Role="AssociateUsersGroup" EntitySet="AssociateUsersGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssociateUsersGroup_UserApplication" Association="SecurityManagmentModel.FK_AssociateUsersGroup_UserApplication">
+            <End Role="UserApplication" EntitySet="UserApplication" />
+            <End Role="AssociateUsersGroup" EntitySet="AssociateUsersGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompanyApplication_Company" Association="SecurityManagmentModel.FK_CompanyApplication_Company">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="CompanyApplication" EntitySet="CompanyApplication" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserApplication_Company" Association="SecurityManagmentModel.FK_UserApplication_Company">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="UserApplication" EntitySet="UserApplication" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reference_Group" Association="SecurityManagmentModel.FK_Reference_Group">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="TableRef" EntitySet="TableRef" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GUI_Page" Association="SecurityManagmentModel.FK_GUI_Page">
+            <End Role="Page" EntitySet="Page" />
+            <End Role="GUI" EntitySet="GUI" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SecurityGUI_GUI" Association="SecurityManagmentModel.FK_SecurityGUI_GUI">
+            <End Role="GUI" EntitySet="GUI" />
+            <End Role="SecurityGUI" EntitySet="SecurityGUI" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LastLogin_UserApplication" Association="SecurityManagmentModel.FK_LastLogin_UserApplication">
+            <End Role="UserApplication" EntitySet="UserApplication" />
+            <End Role="LastLogin" EntitySet="LastLogin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MenuOption_Page" Association="SecurityManagmentModel.FK_MenuOption_Page">
+            <End Role="Page" EntitySet="Page" />
+            <End Role="MenuOption" EntitySet="MenuOption" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MenuOption_Page1" Association="SecurityManagmentModel.FK_MenuOption_Page1">
+            <End Role="Page" EntitySet="Page" />
+            <End Role="MenuOption" EntitySet="MenuOption" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MenuOption_SecurityGUI" Association="SecurityManagmentModel.FK_MenuOption_SecurityGUI">
+            <End Role="SecurityGUI" EntitySet="SecurityGUI" />
+            <End Role="MenuOption" EntitySet="MenuOption" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notifications_TableRef" Association="SecurityManagmentModel.FK_Notifications_TableRef">
+            <End Role="TableRef" EntitySet="TableRef" />
+            <End Role="Notifications" EntitySet="Notifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NotificationsSettings_Notifications" Association="SecurityManagmentModel.FK_NotificationsSettings_Notifications">
+            <End Role="Notifications" EntitySet="Notifications" />
+            <End Role="NotificationsSettings" EntitySet="NotificationsSettings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NotificationsSettings_UserApplication" Association="SecurityManagmentModel.FK_NotificationsSettings_UserApplication">
+            <End Role="UserApplication" EntitySet="UserApplication" />
+            <End Role="NotificationsSettings" EntitySet="NotificationsSettings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NotificationsSettings_UserGroup" Association="SecurityManagmentModel.FK_NotificationsSettings_UserGroup">
+            <End Role="UserGroup" EntitySet="UserGroup" />
+            <End Role="NotificationsSettings" EntitySet="NotificationsSettings" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Application">
+          <Key>
+            <PropertyRef Name="IdApplication" />
+          </Key>
+          <Property Name="IdApplication" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ApplicationName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ApplicationDescription" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ValidateActiveDirectory" Type="Boolean" Nullable="false" />
+          <Property Name="ImageUrl" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ApplicationRole" Relationship="SecurityManagmentModel.FK_ApplicationRole_Application" FromRole="Application" ToRole="ApplicationRole" />
+          <NavigationProperty Name="CompanyApplication" Relationship="SecurityManagmentModel.FK_CompanyApplication_Application" FromRole="Application" ToRole="CompanyApplication" />
+          <NavigationProperty Name="LastLogin" Relationship="SecurityManagmentModel.FK_LastLogin_Application" FromRole="Application" ToRole="LastLogin" />
+          <NavigationProperty Name="NotificationsSettings" Relationship="SecurityManagmentModel.FK_NotificationsSettings_Application" FromRole="Application" ToRole="NotificationsSettings" />
+          <NavigationProperty Name="Page" Relationship="SecurityManagmentModel.FK_Page_Application" FromRole="Application" ToRole="Page" />
+        </EntityType>
+        <EntityType Name="ApplicationRole">
+          <Key>
+            <PropertyRef Name="IdApplicationRole" />
+          </Key>
+          <Property Name="IdApplicationRole" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdRole" Type="Int64" Nullable="false" />
+          <Property Name="IdApplication" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Application" Relationship="SecurityManagmentModel.FK_ApplicationRole_Application" FromRole="ApplicationRole" ToRole="Application" />
+          <NavigationProperty Name="Role" Relationship="SecurityManagmentModel.FK_ApplicationRole_Role" FromRole="ApplicationRole" ToRole="Role" />
+          <NavigationProperty Name="ApplicationUserRole" Relationship="SecurityManagmentModel.FK_ApplicationUserRole_ApplicationRole" FromRole="ApplicationRole" ToRole="ApplicationUserRole" />
+          <NavigationProperty Name="MenuOption" Relationship="SecurityManagmentModel.FK_MenuOption_ApplicationRole" FromRole="ApplicationRole" ToRole="MenuOption" />
+        </EntityType>
+        <EntityType Name="ApplicationUserRole">
+          <Key>
+            <PropertyRef Name="IdApplicationUserRole" />
+          </Key>
+          <Property Name="IdApplicationUserRole" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdCompany" Type="Int64" Nullable="false" />
+          <Property Name="IdApplicationRole" Type="Int64" Nullable="false" />
+          <Property Name="IdUserApplication" Type="Int64" Nullable="false" />
+          <Property Name="State" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ApplicationRole" Relationship="SecurityManagmentModel.FK_ApplicationUserRole_ApplicationRole" FromRole="ApplicationUserRole" ToRole="ApplicationRole" />
+          <NavigationProperty Name="Company" Relationship="SecurityManagmentModel.FK_ApplicationUserRole_Company" FromRole="ApplicationUserRole" ToRole="Company" />
+          <NavigationProperty Name="UserApplication" Relationship="SecurityManagmentModel.FK_ApplicationUserRole_UserApplication" FromRole="ApplicationUserRole" ToRole="UserApplication" />
+        </EntityType>
+        <EntityType Name="AssociateUsersGroup">
+          <Key>
+            <PropertyRef Name="IdAssociateUsersGroup" />
+          </Key>
+          <Property Name="IdAssociateUsersGroup" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdUserGroup" Type="Int32" Nullable="false" />
+          <Property Name="IdUserApplication" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="UserGroup" Relationship="SecurityManagmentModel.FK_AssociateUsersGroup_AssociateUsersGroup" FromRole="AssociateUsersGroup" ToRole="UserGroup" />
+          <NavigationProperty Name="UserApplication" Relationship="SecurityManagmentModel.FK_AssociateUsersGroup_UserApplication" FromRole="AssociateUsersGroup" ToRole="UserApplication" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="IdCompany" />
+          </Key>
+          <Property Name="IdCompany" Type="Int64" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ValidThru" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="ApplicationUserRole" Relationship="SecurityManagmentModel.FK_ApplicationUserRole_Company" FromRole="Company" ToRole="ApplicationUserRole" />
+          <NavigationProperty Name="CompanyApplication" Relationship="SecurityManagmentModel.FK_CompanyApplication_Company" FromRole="Company" ToRole="CompanyApplication" />
+          <NavigationProperty Name="UserApplication" Relationship="SecurityManagmentModel.FK_UserApplication_Company" FromRole="Company" ToRole="UserApplication" />
+        </EntityType>
+        <EntityType Name="CompanyApplication">
+          <Key>
+            <PropertyRef Name="IdCompanyApplication" />
+          </Key>
+          <Property Name="IdCompanyApplication" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdCompany" Type="Int64" Nullable="false" />
+          <Property Name="IdApplication" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Application" Relationship="SecurityManagmentModel.FK_CompanyApplication_Application" FromRole="CompanyApplication" ToRole="Application" />
+          <NavigationProperty Name="Company" Relationship="SecurityManagmentModel.FK_CompanyApplication_Company" FromRole="CompanyApplication" ToRole="Company" />
+        </EntityType>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="IdGroup" />
+          </Key>
+          <Property Name="IdGroup" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DescriptionGroup" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TableRef" Relationship="SecurityManagmentModel.FK_Reference_Group" FromRole="Group" ToRole="TableRef" />
+        </EntityType>
+        <EntityType Name="GUI">
+          <Key>
+            <PropertyRef Name="IdGUI" />
+          </Key>
+          <Property Name="IdGUI" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdentifierGUI" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="IdPage" Type="Int64" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Page" Relationship="SecurityManagmentModel.FK_GUI_Page" FromRole="GUI" ToRole="Page" />
+          <NavigationProperty Name="SecurityGUI" Relationship="SecurityManagmentModel.FK_SecurityGUI_GUI" FromRole="GUI" ToRole="SecurityGUI" />
+        </EntityType>
+        <EntityType Name="LastLogin">
+          <Key>
+            <PropertyRef Name="IdLastLogin" />
+          </Key>
+          <Property Name="IdLastLogin" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdApplication" Type="Int64" Nullable="false" />
+          <Property Name="IdUserApplication" Type="Int64" Nullable="false" />
+          <Property Name="LastLoginDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Application" Relationship="SecurityManagmentModel.FK_LastLogin_Application" FromRole="LastLogin" ToRole="Application" />
+          <NavigationProperty Name="UserApplication" Relationship="SecurityManagmentModel.FK_LastLogin_UserApplication" FromRole="LastLogin" ToRole="UserApplication" />
+        </EntityType>
+        <EntityType Name="MenuOption">
+          <Key>
+            <PropertyRef Name="IdMenuOption" />
+          </Key>
+          <Property Name="IdMenuOption" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdPage" Type="Int64" Nullable="false" />
+          <Property Name="IdSecurityGUI" Type="Int64" />
+          <Property Name="IdMenuOptionFather" Type="Int64" />
+          <Property Name="IdApplicationRole" Type="Int64" Nullable="false" />
+          <Property Name="PageLock" Type="Boolean" Nullable="false" />
+          <Property Name="Target" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IsMenu" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ApplicationRole" Relationship="SecurityManagmentModel.FK_MenuOption_ApplicationRole" FromRole="MenuOption" ToRole="ApplicationRole" />
+          <NavigationProperty Name="Page" Relationship="SecurityManagmentModel.FK_MenuOption_Page" FromRole="MenuOption" ToRole="Page" />
+          <NavigationProperty Name="Page1" Relationship="SecurityManagmentModel.FK_MenuOption_Page1" FromRole="MenuOption" ToRole="Page" />
+          <NavigationProperty Name="SecurityGUI" Relationship="SecurityManagmentModel.FK_MenuOption_SecurityGUI" FromRole="MenuOption" ToRole="SecurityGUI" />
+        </EntityType>
+        <EntityType Name="Notifications">
+          <Key>
+            <PropertyRef Name="IdNotification" />
+          </Key>
+          <Property Name="IdNotification" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdNotificationType" Type="Int64" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Url" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TableRef" Relationship="SecurityManagmentModel.FK_Notifications_TableRef" FromRole="Notifications" ToRole="TableRef" />
+          <NavigationProperty Name="NotificationsSettings" Relationship="SecurityManagmentModel.FK_NotificationsSettings_Notifications" FromRole="Notifications" ToRole="NotificationsSettings" />
+        </EntityType>
+        <EntityType Name="NotificationsSettings">
+          <Key>
+            <PropertyRef Name="IdNotificationsSettings" />
+          </Key>
+          <Property Name="IdNotificationsSettings" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdApplication" Type="Int64" Nullable="false" />
+          <Property Name="IdUserApplication" Type="Int64" />
+          <Property Name="IdUserGroup" Type="Int32" />
+          <Property Name="IdNotification" Type="Int64" Nullable="false" />
+          <Property Name="StartingDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SummaryEndDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DashboardEndDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Application" Relationship="SecurityManagmentModel.FK_NotificationsSettings_Application" FromRole="NotificationsSettings" ToRole="Application" />
+          <NavigationProperty Name="Notifications" Relationship="SecurityManagmentModel.FK_NotificationsSettings_Notifications" FromRole="NotificationsSettings" ToRole="Notifications" />
+          <NavigationProperty Name="UserApplication" Relationship="SecurityManagmentModel.FK_NotificationsSettings_UserApplication" FromRole="NotificationsSettings" ToRole="UserApplication" />
+          <NavigationProperty Name="UserGroup" Relationship="SecurityManagmentModel.FK_NotificationsSettings_UserGroup" FromRole="NotificationsSettings" ToRole="UserGroup" />
+        </EntityType>
+        <EntityType Name="Page">
+          <Key>
+            <PropertyRef Name="IdPage" />
+          </Key>
+          <Property Name="IdPage" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Url" Type="String" Nullable="false" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="IdApplication" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Application" Relationship="SecurityManagmentModel.FK_Page_Application" FromRole="Page" ToRole="Application" />
+          <NavigationProperty Name="GUI" Relationship="SecurityManagmentModel.FK_GUI_Page" FromRole="Page" ToRole="GUI" />
+          <NavigationProperty Name="MenuOption" Relationship="SecurityManagmentModel.FK_MenuOption_Page" FromRole="Page" ToRole="MenuOption" />
+          <NavigationProperty Name="MenuOption1" Relationship="SecurityManagmentModel.FK_MenuOption_Page1" FromRole="Page" ToRole="MenuOption" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="IdRole" />
+          </Key>
+          <Property Name="IdRole" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RoleDescription" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ImageUrl" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ApplicationRole" Relationship="SecurityManagmentModel.FK_ApplicationRole_Role" FromRole="Role" ToRole="ApplicationRole" />
+        </EntityType>
+        <EntityType Name="SecurityGUI">
+          <Key>
+            <PropertyRef Name="IdSecurityGUI" />
+          </Key>
+          <Property Name="IdSecurityGUI" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdGUI" Type="Int64" Nullable="false" />
+          <Property Name="ControlLock" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="GUI" Relationship="SecurityManagmentModel.FK_SecurityGUI_GUI" FromRole="SecurityGUI" ToRole="GUI" />
+          <NavigationProperty Name="MenuOption" Relationship="SecurityManagmentModel.FK_MenuOption_SecurityGUI" FromRole="SecurityGUI" ToRole="MenuOption" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TableRef">
+          <Key>
+            <PropertyRef Name="IdReference" />
+          </Key>
+          <Property Name="IdReference" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdGroup" Type="Int64" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="Value" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Group" Relationship="SecurityManagmentModel.FK_Reference_Group" FromRole="TableRef" ToRole="Group" />
+          <NavigationProperty Name="Notifications" Relationship="SecurityManagmentModel.FK_Notifications_TableRef" FromRole="TableRef" ToRole="Notifications" />
+        </EntityType>
+        <EntityType Name="UserApplication">
+          <Key>
+            <PropertyRef Name="IdUserApplication" />
+          </Key>
+          <Property Name="IdUserApplication" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Surname" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="DocumentType" Type="Int64" />
+          <Property Name="DocumentNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EffectiveDate" Type="DateTime" Precision="3" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UserPassword" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="Boolean" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IdCompany" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="ApplicationUserRole" Relationship="SecurityManagmentModel.FK_ApplicationUserRole_UserApplication" FromRole="UserApplication" ToRole="ApplicationUserRole" />
+          <NavigationProperty Name="AssociateUsersGroup" Relationship="SecurityManagmentModel.FK_AssociateUsersGroup_UserApplication" FromRole="UserApplication" ToRole="AssociateUsersGroup" />
+          <NavigationProperty Name="Company" Relationship="SecurityManagmentModel.FK_UserApplication_Company" FromRole="UserApplication" ToRole="Company" />
+          <NavigationProperty Name="LastLogin" Relationship="SecurityManagmentModel.FK_LastLogin_UserApplication" FromRole="UserApplication" ToRole="LastLogin" />
+          <NavigationProperty Name="NotificationsSettings" Relationship="SecurityManagmentModel.FK_NotificationsSettings_UserApplication" FromRole="UserApplication" ToRole="NotificationsSettings" />
+        </EntityType>
+        <EntityType Name="UserGroup">
+          <Key>
+            <PropertyRef Name="IdUserGroup" />
+          </Key>
+          <Property Name="IdUserGroup" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AssociateUsersGroup" Relationship="SecurityManagmentModel.FK_AssociateUsersGroup_AssociateUsersGroup" FromRole="UserGroup" ToRole="AssociateUsersGroup" />
+          <NavigationProperty Name="NotificationsSettings" Relationship="SecurityManagmentModel.FK_NotificationsSettings_UserGroup" FromRole="UserGroup" ToRole="NotificationsSettings" />
+        </EntityType>
+        <Association Name="FK_ApplicationRole_Application">
+          <End Type="SecurityManagmentModel.Application" Role="Application" Multiplicity="1" />
+          <End Type="SecurityManagmentModel.ApplicationRole" Role="ApplicationRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Application">
+              <PropertyRef Name="IdApplication" />
+            </Principal>
+            <Dependent Role="ApplicationRole">
+              <PropertyRef Name="IdApplication" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompanyApplication_Application">
+          <End Type="SecurityManagmentModel.Application" Role="Application" Multiplicity="1" />
+          <End Type="SecurityManagmentModel.CompanyApplication" Role="CompanyApplication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Application">
+              <PropertyRef Name="IdApplication" />
+            </Principal>
+            <Dependent Role="CompanyApplication">
+              <PropertyRef Name="IdApplication" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LastLogin_Application">
+          <End Type="SecurityManagmentModel.Application" Role="Application" Multiplicity="1" />
+          <End Type="SecurityManagmentModel.LastLogin" Role="LastLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Application">
+              <PropertyRef Name="IdApplication" />
+            </Principal>
+            <Dependent Role="LastLogin">
+              <PropertyRef Name="IdApplication" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NotificationsSettings_Application">
+          <End Type="SecurityManagmentModel.Application" Role="Application" Multiplicity="1" />
+          <End Type="SecurityManagmentModel.NotificationsSettings" Role="NotificationsSettings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Application">
+              <PropertyRef Name="IdApplication" />
+            </Principal>
+            <Dependent Role="NotificationsSettings">
+              <PropertyRef Name="IdApplication" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Page_Application">
+          <End Type="SecurityManagmentModel.Application" Role="Application" Multiplicity="1" />
+          <End Type="SecurityManagmentModel.Page" Role="Page" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Application">
+              <PropertyRef Name="IdApplication" />
+            </Principal>
+            <Dependent Role="Page">
+              <PropertyRef Name="IdApplication" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ApplicationRole_Role">
+          <End Type="SecurityManagmentModel.Role" Role="Role" Multiplicity="1" />
+          <End Type="SecurityManagmentModel.ApplicationRole" Role="ApplicationRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="IdRole" />
+            </Principal>
+            <Dependent Role="ApplicationRole">
+              <PropertyRef Name="IdRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ApplicationUserRole_ApplicationRole">
+          <End Type="SecurityManagmentModel.ApplicationRole" Role="ApplicationRole" Multiplicity="1" />
+          <End Type="SecurityManagmentModel.ApplicationUserRole" Role="ApplicationUserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationRole">
+              <PropertyRef Name="IdApplicationRole" />
+            </Principal>
+            <Dependent Role="ApplicationUserRole">
+              <PropertyRef Name="IdApplicationRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MenuOption_ApplicationRole">
+          <End Type="SecurityManagmentModel.ApplicationRole" Role="ApplicationRole" Multiplicity="1" />
+          <End Type="SecurityManagmentModel.MenuOption" Role="MenuOption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationRole">
+              <PropertyRef Name="IdApplicationRole" />
+            </Principal>
+            <Dependent Role="MenuOption">
+              <PropertyRef Name="IdApplicationRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ApplicationUserRole_Company">
+          <End Type="SecurityManagmentModel.Company" Role="Company" Multiplicity="1" />
+          <End Type="SecurityManagmentModel.ApplicationUserRole" Role="ApplicationUserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="IdCompany" />
+            </Principal>
+            <Dependent Role="ApplicationUserRole">
+              <PropertyRef Name="IdCompany" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ApplicationUserRole_UserApplication">
+          <End Type="SecurityManagmentModel.UserApplication" Role="UserApplication" Multiplicity="1" />
+          <End Type="SecurityManagmentModel.ApplicationUserRole" Role="ApplicationUserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserApplication">
+              <PropertyRef Name="IdUserApplication" />
+            </Principal>
+            <Dependent Role="ApplicationUserRole">
+              <PropertyRef Name="IdUserApplication" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssociateUsersGroup_AssociateUsersGroup">
+          <End Type="SecurityManagmentModel.UserGroup" Role="UserGroup" Multiplicity="1" />
+          <End Type="SecurityManagmentModel.AssociateUsersGroup" Role="AssociateUsersGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserGroup">
+              <PropertyRef Name="IdUserGroup" />
+            </Principal>
+            <Dependent Role="AssociateUsersGroup">
+              <PropertyRef Name="IdUserGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssociateUsersGroup_UserApplication">
+          <End Type="SecurityManagmentModel.UserApplication" Role="UserApplication" Multiplicity="1" />
+          <End Type="SecurityManagmentModel.AssociateUsersGroup" Role="AssociateUsersGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserApplication">
+              <PropertyRef Name="IdUserApplication" />
+            </Principal>
+            <Dependent Role="AssociateUsersGroup">
+              <PropertyRef Name="IdUserApplication" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompanyApplication_Company">
+          <End Type="SecurityManagmentModel.Company" Role="Company" Multiplicity="1" />
+          <End Type="SecurityManagmentModel.CompanyApplication" Role="CompanyApplication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="IdCompany" />
+            </Principal>
+            <Dependent Role="CompanyApplication">
+              <PropertyRef Name="IdCompany" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserApplication_Company">
+          <End Type="SecurityManagmentModel.Company" Role="Company" Multiplicity="1" />
+          <End Type="SecurityManagmentModel.UserApplication" Role="UserApplication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="IdCompany" />
+            </Principal>
+            <Dependent Role="UserApplication">
+              <PropertyRef Name="IdCompany" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reference_Group">
+          <End Type="SecurityManagmentModel.Group" Role="Group" Multiplicity="1" />
+          <End Type="SecurityManagmentModel.TableRef" Role="TableRef" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="IdGroup" />
+            </Principal>
+            <Dependent Role="TableRef">
+              <PropertyRef Name="IdGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GUI_Page">
+          <End Type="SecurityManagmentModel.Page" Role="Page" Multiplicity="1" />
+          <End Type="SecurityManagmentModel.GUI" Role="GUI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Page">
+              <PropertyRef Name="IdPage" />
+            </Principal>
+            <Dependent Role="GUI">
+              <PropertyRef Name="IdPage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SecurityGUI_GUI">
+          <End Type="SecurityManagmentModel.GUI" Role="GUI" Multiplicity="1" />
+          <End Type="SecurityManagmentModel.SecurityGUI" Role="SecurityGUI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GUI">
+              <PropertyRef Name="IdGUI" />
+            </Principal>
+            <Dependent Role="SecurityGUI">
+              <PropertyRef Name="IdGUI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LastLogin_UserApplication">
+          <End Type="SecurityManagmentModel.UserApplication" Role="UserApplication" Multiplicity="1" />
+          <End Type="SecurityManagmentModel.LastLogin" Role="LastLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserApplication">
+              <PropertyRef Name="IdUserApplication" />
+            </Principal>
+            <Dependent Role="LastLogin">
+              <PropertyRef Name="IdUserApplication" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MenuOption_Page">
+          <End Type="SecurityManagmentModel.Page" Role="Page" Multiplicity="1" />
+          <End Type="SecurityManagmentModel.MenuOption" Role="MenuOption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Page">
+              <PropertyRef Name="IdPage" />
+            </Principal>
+            <Dependent Role="MenuOption">
+              <PropertyRef Name="IdPage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MenuOption_Page1">
+          <End Type="SecurityManagmentModel.Page" Role="Page" Multiplicity="0..1" />
+          <End Type="SecurityManagmentModel.MenuOption" Role="MenuOption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Page">
+              <PropertyRef Name="IdPage" />
+            </Principal>
+            <Dependent Role="MenuOption">
+              <PropertyRef Name="IdMenuOptionFather" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MenuOption_SecurityGUI">
+          <End Type="SecurityManagmentModel.SecurityGUI" Role="SecurityGUI" Multiplicity="0..1" />
+          <End Type="SecurityManagmentModel.MenuOption" Role="MenuOption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SecurityGUI">
+              <PropertyRef Name="IdSecurityGUI" />
+            </Principal>
+            <Dependent Role="MenuOption">
+              <PropertyRef Name="IdSecurityGUI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notifications_TableRef">
+          <End Type="SecurityManagmentModel.TableRef" Role="TableRef" Multiplicity="1" />
+          <End Type="SecurityManagmentModel.Notifications" Role="Notifications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TableRef">
+              <PropertyRef Name="IdReference" />
+            </Principal>
+            <Dependent Role="Notifications">
+              <PropertyRef Name="IdNotificationType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NotificationsSettings_Notifications">
+          <End Type="SecurityManagmentModel.Notifications" Role="Notifications" Multiplicity="1" />
+          <End Type="SecurityManagmentModel.NotificationsSettings" Role="NotificationsSettings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Notifications">
+              <PropertyRef Name="IdNotification" />
+            </Principal>
+            <Dependent Role="NotificationsSettings">
+              <PropertyRef Name="IdNotification" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NotificationsSettings_UserApplication">
+          <End Type="SecurityManagmentModel.UserApplication" Role="UserApplication" Multiplicity="0..1" />
+          <End Type="SecurityManagmentModel.NotificationsSettings" Role="NotificationsSettings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserApplication">
+              <PropertyRef Name="IdUserApplication" />
+            </Principal>
+            <Dependent Role="NotificationsSettings">
+              <PropertyRef Name="IdUserApplication" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NotificationsSettings_UserGroup">
+          <End Type="SecurityManagmentModel.UserGroup" Role="UserGroup" Multiplicity="0..1" />
+          <End Type="SecurityManagmentModel.NotificationsSettings" Role="NotificationsSettings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserGroup">
+              <PropertyRef Name="IdUserGroup" />
+            </Principal>
+            <Dependent Role="NotificationsSettings">
+              <PropertyRef Name="IdUserGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SecurityManagmentModelStoreContainer" CdmEntityContainer="SecurityManagmentEntities">
+          <EntitySetMapping Name="Application">
+            <EntityTypeMapping TypeName="SecurityManagmentModel.Application">
+              <MappingFragment StoreEntitySet="Application">
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="ValidateActiveDirectory" ColumnName="ValidateActiveDirectory" />
+                <ScalarProperty Name="ApplicationDescription" ColumnName="ApplicationDescription" />
+                <ScalarProperty Name="ApplicationName" ColumnName="ApplicationName" />
+                <ScalarProperty Name="IdApplication" ColumnName="IdApplication" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ApplicationRole">
+            <EntityTypeMapping TypeName="SecurityManagmentModel.ApplicationRole">
+              <MappingFragment StoreEntitySet="ApplicationRole">
+                <ScalarProperty Name="IdApplication" ColumnName="IdApplication" />
+                <ScalarProperty Name="IdRole" ColumnName="IdRole" />
+                <ScalarProperty Name="IdApplicationRole" ColumnName="IdApplicationRole" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ApplicationUserRole">
+            <EntityTypeMapping TypeName="SecurityManagmentModel.ApplicationUserRole">
+              <MappingFragment StoreEntitySet="ApplicationUserRole">
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="IdUserApplication" ColumnName="IdUserApplication" />
+                <ScalarProperty Name="IdApplicationRole" ColumnName="IdApplicationRole" />
+                <ScalarProperty Name="IdCompany" ColumnName="IdCompany" />
+                <ScalarProperty Name="IdApplicationUserRole" ColumnName="IdApplicationUserRole" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AssociateUsersGroup">
+            <EntityTypeMapping TypeName="SecurityManagmentModel.AssociateUsersGroup">
+              <MappingFragment StoreEntitySet="AssociateUsersGroup">
+                <ScalarProperty Name="IdUserApplication" ColumnName="IdUserApplication" />
+                <ScalarProperty Name="IdUserGroup" ColumnName="IdUserGroup" />
+                <ScalarProperty Name="IdAssociateUsersGroup" ColumnName="IdAssociateUsersGroup" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Company">
+            <EntityTypeMapping TypeName="SecurityManagmentModel.Company">
+              <MappingFragment StoreEntitySet="Company">
+                <ScalarProperty Name="ValidThru" ColumnName="ValidThru" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IdCompany" ColumnName="IdCompany" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CompanyApplication">
+            <EntityTypeMapping TypeName="SecurityManagmentModel.CompanyApplication">
+              <MappingFragment StoreEntitySet="CompanyApplication">
+                <ScalarProperty Name="IdApplication" ColumnName="IdApplication" />
+                <ScalarProperty Name="IdCompany" ColumnName="IdCompany" />
+                <ScalarProperty Name="IdCompanyApplication" ColumnName="IdCompanyApplication" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Group">
+            <EntityTypeMapping TypeName="SecurityManagmentModel.Group">
+              <MappingFragment StoreEntitySet="Group">
+                <ScalarProperty Name="DescriptionGroup" ColumnName="DescriptionGroup" />
+                <ScalarProperty Name="IdGroup" ColumnName="IdGroup" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GUI">
+            <EntityTypeMapping TypeName="SecurityManagmentModel.GUI">
+              <MappingFragment StoreEntitySet="GUI">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IdPage" ColumnName="IdPage" />
+                <ScalarProperty Name="IdentifierGUI" ColumnName="IdentifierGUI" />
+                <ScalarProperty Name="IdGUI" ColumnName="IdGUI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LastLogin">
+            <EntityTypeMapping TypeName="SecurityManagmentModel.LastLogin">
+              <MappingFragment StoreEntitySet="LastLogin">
+                <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+                <ScalarProperty Name="IdUserApplication" ColumnName="IdUserApplication" />
+                <ScalarProperty Name="IdApplication" ColumnName="IdApplication" />
+                <ScalarProperty Name="IdLastLogin" ColumnName="IdLastLogin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MenuOption">
+            <EntityTypeMapping TypeName="SecurityManagmentModel.MenuOption">
+              <MappingFragment StoreEntitySet="MenuOption">
+                <ScalarProperty Name="IsMenu" ColumnName="IsMenu" />
+                <ScalarProperty Name="Target" ColumnName="Target" />
+                <ScalarProperty Name="PageLock" ColumnName="PageLock" />
+                <ScalarProperty Name="IdApplicationRole" ColumnName="IdApplicationRole" />
+                <ScalarProperty Name="IdMenuOptionFather" ColumnName="IdMenuOptionFather" />
+                <ScalarProperty Name="IdSecurityGUI" ColumnName="IdSecurityGUI" />
+                <ScalarProperty Name="IdPage" ColumnName="IdPage" />
+                <ScalarProperty Name="IdMenuOption" ColumnName="IdMenuOption" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Notifications">
+            <EntityTypeMapping TypeName="SecurityManagmentModel.Notifications">
+              <MappingFragment StoreEntitySet="Notifications">
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="IdNotificationType" ColumnName="IdNotificationType" />
+                <ScalarProperty Name="IdNotification" ColumnName="IdNotification" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NotificationsSettings">
+            <EntityTypeMapping TypeName="SecurityManagmentModel.NotificationsSettings">
+              <MappingFragment StoreEntitySet="NotificationsSettings">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="DashboardEndDate" ColumnName="DashboardEndDate" />
+                <ScalarProperty Name="SummaryEndDate" ColumnName="SummaryEndDate" />
+                <ScalarProperty Name="StartingDate" ColumnName="StartingDate" />
+                <ScalarProperty Name="IdNotification" ColumnName="IdNotification" />
+                <ScalarProperty Name="IdUserGroup" ColumnName="IdUserGroup" />
+                <ScalarProperty Name="IdUserApplication" ColumnName="IdUserApplication" />
+                <ScalarProperty Name="IdApplication" ColumnName="IdApplication" />
+                <ScalarProperty Name="IdNotificationsSettings" ColumnName="IdNotificationsSettings" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Page">
+            <EntityTypeMapping TypeName="SecurityManagmentModel.Page">
+              <MappingFragment StoreEntitySet="Page">
+                <ScalarProperty Name="IdApplication" ColumnName="IdApplication" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="IdPage" ColumnName="IdPage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="SecurityManagmentModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="RoleDescription" ColumnName="RoleDescription" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="IdRole" ColumnName="IdRole" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SecurityGUI">
+            <EntityTypeMapping TypeName="SecurityManagmentModel.SecurityGUI">
+              <MappingFragment StoreEntitySet="SecurityGUI">
+                <ScalarProperty Name="ControlLock" ColumnName="ControlLock" />
+                <ScalarProperty Name="IdGUI" ColumnName="IdGUI" />
+                <ScalarProperty Name="IdSecurityGUI" ColumnName="IdSecurityGUI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="SecurityManagmentModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TableRef">
+            <EntityTypeMapping TypeName="SecurityManagmentModel.TableRef">
+              <MappingFragment StoreEntitySet="TableRef">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IdGroup" ColumnName="IdGroup" />
+                <ScalarProperty Name="IdReference" ColumnName="IdReference" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserApplication">
+            <EntityTypeMapping TypeName="SecurityManagmentModel.UserApplication">
+              <MappingFragment StoreEntitySet="UserApplication">
+                <ScalarProperty Name="IdCompany" ColumnName="IdCompany" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="EffectiveDate" ColumnName="EffectiveDate" />
+                <ScalarProperty Name="DocumentNumber" ColumnName="DocumentNumber" />
+                <ScalarProperty Name="DocumentType" ColumnName="DocumentType" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IdUserApplication" ColumnName="IdUserApplication" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserGroup">
+            <EntityTypeMapping TypeName="SecurityManagmentModel.UserGroup">
+              <MappingFragment StoreEntitySet="UserGroup">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="IdUserGroup" ColumnName="IdUserGroup" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

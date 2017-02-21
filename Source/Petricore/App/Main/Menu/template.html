@@ -1,0 +1,27 @@
+<!-- Sidebar -->
+<div id="sidebar-wrapper">
+    <nav class="navigation">
+        <ul class="sidebar-nav mainmenu">
+            <li class="sidebar-brand">
+                <a href="">
+                PETRICORE
+            </a>
+            </li>
+            <li ng-repeat="menuOption in menuOptions">
+                <a href="" ng-click="navigateTo(menuOption.Url);"><span>{{menuOption.Title}}</span></a>
+
+                <ul ng-repeat="subMenu in menuOption.Children" class="submenu">
+                    <li>
+                        <a href="" ng-click="navigateTo(subMenu.Url);"><span>{{subMenu.Title}}</span></a>
+                        <ul ng-repeat="subSubMenu in subMenu.Children" class="submenuu">
+                            <li>
+                                <a href="" ng-click="navigateTo(subSubMenu.Url);"><span>{{subSubMenu.Title}}</span></a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+</div>
+<!-- /#sidebar-wrapper -->

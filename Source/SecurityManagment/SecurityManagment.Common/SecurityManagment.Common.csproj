@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{23AC7893-E10C-439C-A902-0E6B84B6A656}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SecurityManagment.Common</RootNamespace>
+    <AssemblyName>SecurityManagment.Common</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.4.0.4\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Configuration\CommonSettingsAplication.Designer.cs">
+      <DependentUpon>CommonSettingsAplication.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Dto\Authentication\AllowApplicationDto.cs" />
+    <Compile Include="Dto\Authentication\AllowResourcesDto.cs" />
+    <Compile Include="Dto\Authentication\BasicAuthenticationDto.cs" />
+    <Compile Include="Dto\Authentication\ChangePasswordDto.cs" />
+    <Compile Include="Dto\BaseDto.cs" />
+    <Compile Include="Dto\Email\MailAddressDto.cs" />
+    <Compile Include="Dto\Email\MailMessageDto.cs" />
+    <Compile Include="Dto\ErrorDto.cs" />
+    <Compile Include="Dto\PaginationDto.cs" />
+    <Compile Include="Dto\Response\ResultApplicationDto.cs" />
+    <Compile Include="Dto\Response\ResultApplicationRoleDto.cs" />
+    <Compile Include="Dto\Response\ResultApplicationUserRoleDto.cs" />
+    <Compile Include="Dto\Response\ResultDto.cs" />
+    <Compile Include="Dto\Response\ResultMenuOptionDto.cs" />
+    <Compile Include="Dto\Response\ResultNotificationsDto.cs" />
+    <Compile Include="Dto\Response\ResultRoleDto.cs" />
+    <Compile Include="Dto\Response\ResultUserAuthenticationDto.cs" />
+    <Compile Include="Dto\Response\ResultUserDto.cs" />
+    <Compile Include="Dto\SecurityManagment\ApplicationDto.cs" />
+    <Compile Include="Dto\SecurityManagment\ApplicationRoleDto.cs" />
+    <Compile Include="Dto\SecurityManagment\ApplicationUserRoleDto.cs" />
+    <Compile Include="Dto\SecurityManagment\AssociateUsersGroupDto.cs" />
+    <Compile Include="Dto\SecurityManagment\CompanyApplicationDto.cs" />
+    <Compile Include="Dto\SecurityManagment\CompanyDto.cs" />
+    <Compile Include="Dto\SecurityManagment\GroupDto.cs" />
+    <Compile Include="Dto\SecurityManagment\GUIDto.cs" />
+    <Compile Include="Dto\SecurityManagment\LastLoginDto.cs" />
+    <Compile Include="Dto\SecurityManagment\MenuOptionDto.cs" />
+    <Compile Include="Dto\SecurityManagment\NotificationsDto.cs" />
+    <Compile Include="Dto\SecurityManagment\NotificationsSettingsDto.cs" />
+    <Compile Include="Dto\SecurityManagment\PageDto.cs" />
+    <Compile Include="Dto\SecurityManagment\RoleDto.cs" />
+    <Compile Include="Dto\SecurityManagment\SecurityGUIDto.cs" />
+    <Compile Include="Dto\SecurityManagment\TableRefDto.cs" />
+    <Compile Include="Dto\SecurityManagment\UserApplicationDto.cs" />
+    <Compile Include="Dto\SecurityManagment\UserGroupDto.cs" />
+    <Compile Include="Enum\AuthenticationCode.cs" />
+    <Compile Include="Enum\EnumReferenceTable.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\CommonUtilities.cs" />
+    <Compile Include="Utilities\Crypto.cs" />
+    <Compile Include="Utilities\UtilitiesObject.cs" />
+    <Compile Include="Utilities\WriteFile.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Configuration\CommonSettingsAplication.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>CommonSettingsAplication.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

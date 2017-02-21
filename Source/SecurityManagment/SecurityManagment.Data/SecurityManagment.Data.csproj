@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7AA5FE7E-A0D8-48BF-86C6-AF2E8360136E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SecurityManagment.Data</RootNamespace>
+    <AssemblyName>SecurityManagment.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.4.0.4\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Binbin.Linq.PredicateBuilder">
+      <HintPath>..\packages\Binbin.Linq.PredicateBuilder.1.0.3.26645\lib\net45\Binbin.Linq.PredicateBuilder.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="LinqKit, Version=1.1.2.0, Culture=neutral, PublicKeyToken=bc217f8844052a91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\LinqKit.1.1.2\lib\net45\LinqKit.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Linq.Dynamic">
+      <HintPath>..\packages\System.Linq.Dynamic.1.0.4\lib\net40\System.Linq.Dynamic.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="EntityModel\SecurityManagment\Application.cs">
+      <DependentUpon>SecurityManagment.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\SecurityManagment\ApplicationRole.cs">
+      <DependentUpon>SecurityManagment.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\SecurityManagment\ApplicationUserRole.cs">
+      <DependentUpon>SecurityManagment.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\SecurityManagment\AssociateUsersGroup.cs">
+      <DependentUpon>SecurityManagment.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\SecurityManagment\Company.cs">
+      <DependentUpon>SecurityManagment.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\SecurityManagment\CompanyApplication.cs">
+      <DependentUpon>SecurityManagment.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\SecurityManagment\Group.cs">
+      <DependentUpon>SecurityManagment.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\SecurityManagment\GUI.cs">
+      <DependentUpon>SecurityManagment.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\SecurityManagment\LastLogin.cs">
+      <DependentUpon>SecurityManagment.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\SecurityManagment\MenuOption.cs">
+      <DependentUpon>SecurityManagment.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\SecurityManagment\Notifications.cs">
+      <DependentUpon>SecurityManagment.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\SecurityManagment\NotificationsSettings.cs">
+      <DependentUpon>SecurityManagment.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\SecurityManagment\Page.cs">
+      <DependentUpon>SecurityManagment.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\SecurityManagment\Role.cs">
+      <DependentUpon>SecurityManagment.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\SecurityManagment\SecurityGUI.cs">
+      <DependentUpon>SecurityManagment.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\SecurityManagment\SecurityManagment.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SecurityManagment.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\SecurityManagment\SecurityManagment.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SecurityManagment.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\SecurityManagment\SecurityManagment.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SecurityManagment.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\SecurityManagment\sysdiagrams.cs">
+      <DependentUpon>SecurityManagment.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\SecurityManagment\TableRef.cs">
+      <DependentUpon>SecurityManagment.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\SecurityManagment\UserApplication.cs">
+      <DependentUpon>SecurityManagment.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\SecurityManagment\UserGroup.cs">
+      <DependentUpon>SecurityManagment.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\BaseRepository.cs" />
+    <Compile Include="Repositories\Extensions\ConditionalQuery.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Repositories\Extensions\DynamicInclude.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Repositories\SecurityManagment\Implementation\ApplicationRepository.cs" />
+    <Compile Include="Repositories\SecurityManagment\Implementation\ApplicationRoleRepository.cs" />
+    <Compile Include="Repositories\SecurityManagment\Implementation\ApplicationUserRoleRepository.cs" />
+    <Compile Include="Repositories\SecurityManagment\Implementation\AssociateUsersGroupRepository.cs" />
+    <Compile Include="Repositories\SecurityManagment\Implementation\CompanyApplicationRepository.cs" />
+    <Compile Include="Repositories\SecurityManagment\Implementation\LastLoginRepository.cs" />
+    <Compile Include="Repositories\SecurityManagment\Implementation\NotificationsRepository.cs" />
+    <Compile Include="Repositories\SecurityManagment\Implementation\NotificationsSettingsRepository.cs" />
+    <Compile Include="Repositories\SecurityManagment\Implementation\UserApplicationRepository.cs" />
+    <Compile Include="Repositories\SecurityManagment\Interface\IApplicationRepository.cs" />
+    <Compile Include="Repositories\SecurityManagment\Interface\IApplicationRoleRepository.cs" />
+    <Compile Include="Repositories\SecurityManagment\Interface\IApplicationUserRoleRepository.cs" />
+    <Compile Include="Repositories\SecurityManagment\Interface\IAssociateUsersGroupRepository.cs" />
+    <Compile Include="Repositories\SecurityManagment\Interface\ICompanyApplicationRepository.cs" />
+    <Compile Include="Repositories\SecurityManagment\Interface\ILastLoginRepository.cs" />
+    <Compile Include="Repositories\SecurityManagment\Interface\INotificationsRepository.cs" />
+    <Compile Include="Repositories\SecurityManagment\Interface\INotificationsSettingsRepository.cs" />
+    <Compile Include="Repositories\SecurityManagment\Interface\IUserApplicationRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <EntityDeploy Include="EntityModel\SecurityManagment\SecurityManagment.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SecurityManagment.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="EntityModel\SecurityManagment\SecurityManagment.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SecurityManagment.edmx</DependentUpon>
+      <LastGenOutput>SecurityManagment.Context.cs</LastGenOutput>
+    </None>
+    <None Include="EntityModel\SecurityManagment\SecurityManagment.edmx.diagram">
+      <DependentUpon>SecurityManagment.edmx</DependentUpon>
+    </None>
+    <None Include="EntityModel\SecurityManagment\SecurityManagment.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SecurityManagment.edmx</DependentUpon>
+      <LastGenOutput>SecurityManagment.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\SecurityManagment.Common\SecurityManagment.Common.csproj">
+      <Project>{23ac7893-e10c-439c-a902-0e6b84b6a656}</Project>
+      <Name>SecurityManagment.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

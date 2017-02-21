@@ -1,0 +1,49 @@
+//Screen sizes that correspond to Bootstrap v3.x
+$screen-xs: 480px;
+$screen-xs-min: $screen-xs;
+$screen-sm: 768px;
+$screen-sm-min: $screen-sm;
+$screen-md: 992px;
+$screen-md-min: $screen-md;
+$screen-lg: 1200px;
+$screen-lg-min: $screen-lg;
+$screen-xs-max: ($screen-sm-min - 1);
+$screen-sm-max: ($screen-md-min - 1);
+$screen-md-max: ($screen-lg-min - 1);
+//Standard Font Sizes
+$fs1: 9px;
+$fs2: 12px;
+$fs3: 16px;
+$fs4: 21px;
+$fs5: 28px;
+$fs6: 37px;
+$fs7: 50px;
+$fs8: 67px;
+$fs9: 89px;
+$fs10: 119px;
+$fs11: 159px;
+
+
+// colors //
+
+$background-header:#C4CFE4;
+$background-tabs:#E5E5E5;
+$blue:#6589C8;
+$blue-accordion:#4E7AC7;
+$light-blue:#C4CFE4;
+$dark-blue:#34468C;
+$bg-container:#F2F2F2;
+$bg-forms:#ffffff;
+$gray:#8A8A8A;
+$dark-gray:#666666; 
+$bg-required: #E4ECF8;
+$bg-info-message: #E5F3FE;
+$bg-tr:#EDF2FA;
+$ligth-gray:#CECECE;
+
+$information-messages:#0079F2;
+$error-messages:#F03000;
+$alert-messages:#FFB415;
+$success-messages:#40C400;
+$alert-messages:#FFB415;
+

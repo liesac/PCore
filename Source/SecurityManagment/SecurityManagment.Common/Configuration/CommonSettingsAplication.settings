@@ -1,0 +1,21 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SecurityManagment.Common.Configuration" GeneratedClassName="CommonSettingsAplication">
+  <Profiles />
+  <Settings>
+    <Setting Name="MESSFromAddress" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Es necesario ingresar un remitente.</Value>
+    </Setting>
+    <Setting Name="MESSToAddress" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Es necesario ingresar un destinatario</Value>
+    </Setting>
+    <Setting Name="SMTPHost" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">10.9.0.252</Value>
+    </Setting>
+    <Setting Name="MESSSMTPSucess" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Correo electrónico fue enviado satisfactoriamente.</Value>
+    </Setting>
+    <Setting Name="MESSSMTPError" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Error enviando correo electrónico: </Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

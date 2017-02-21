@@ -1,0 +1,3 @@
+<div>
+    <input type="text" id="autocomplete{{id}}" placeholder="{{placeholder}}" ng-model="idEntity" minlength="{{minLength}}" maxlength="{{maxLength}}"  class="form-control" data-isRequired="{{isRequired}}" data-typeValidation="{{typeValidation}}" custom-validation-ceo uppercase autocomplete="off" uib-typeahead="item as item.name for item in itemList | filter:{name:$viewValue}" typeahead-on-select="onSelect($item, $model, $label, $event)" ng-blur="lostFocus()">
+</div>
