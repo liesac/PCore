@@ -1,4 +1,4 @@
 var angular = require('angular');
-require('./Create/init');
+require('./CreateUpdate/init');
 
-module.exports = angular.module('LA.Locations', ['LA.Locations.Create']);
+module.exports = angular.module('LA.Locations', ['LA.Locations.CreateUpdate']);

@@ -1,3 +1,4 @@
 module.exports = {
-    securityApiUrl: 'http://localhost:53787/api/'
+    securityApiUrl: 'http://localhost:53787/api/',
+    mudLoggingApiUrl: ''
 };

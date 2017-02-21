@@ -1,6 +1,4 @@
 var angular = require('angular');
-require('./Create/init');
-require('./Update/init');
+require('./CreateUpdate/init');
 
-
-module.exports = angular.module('Petricore.Well', ['Petricore.Well.Create','Petricore.Well.Update']);
+module.exports = angular.module('Petricore.Well', ['Petricore.Well.CreateUpdate']);

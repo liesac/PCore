@@ -70,13 +70,13 @@ function Router($stateProvider, $urlRouterProvider) {
         })
         .state('home.well.create', {
             url: '/create',
-            template: require('html!../Well/Create/template.html'),
-            controller: 'CreateWellController'
+            template: require('html!../Well/CreateUpdate/template.html'),
+            controller: 'CreateUpdateWellController'
         })
         .state('home.well.update', {
             url: '/update',
-            template: require('html!../Well/Update/template.html'),
-            controller: 'UpdateWellController'
+            template: require('html!../Well/CreateUpdate/template.html'),
+            controller: 'CreateUpdateWellController'
         });
 }
 

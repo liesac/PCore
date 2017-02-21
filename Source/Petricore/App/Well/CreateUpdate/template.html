@@ -1,0 +1,163 @@
+<div class="container-fluid">
+    <form>
+        <div class="well-main-container">
+            <div class="row" ng-if="isUpdateWell">
+                <div class="form-group col-sm-12">
+                    <label for="wellList">*Well List</label>
+                    <select class="form-control" id="wellList" ng-model="models.wellId"
+                            ng-options="models.wellList.id as models.wellList.nameWell in models.wellList">
+                        <option value="">Please select...</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-5">
+                    <label for="wellId">*Well ID</label>
+                    <input type="text" class="form-control" id="wellId" ng-model="models.wellId">
+                </div>
+                <div class="form-group col-sm-7">
+                    <label for="wellName">*Well Name</label>
+                    <input type="text" class="form-control" id="wellName" ng-model="models.wellName">
+                </div>
+                <div class="form-group col-sm-6">
+                    <label for="oilFields">*Oil Field</label>
+                    <select class="form-control" id="oilFields" ng-model="models.oilFieldId"
+                            ng-options="models.oilFields.id as models.oilFields.name in models.oilFields">
+                        <option value="">Please select...</option>
+                    </select>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label for="timeZone">*Time Zone</label>
+                    <input type="text" class="form-control" id="timeZone" ng-model="models.timeZone" readonly>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-5">
+                    <label for="unitSystem">*Unit System</label>
+                    <select class="form-control" id="unitSystem" ng-model="models.unitSystemId"
+                            ng-options="models.unitSystem.id as models.unitSystem.name in models.unitSystem">
+                        <option value="">Please select...</option>
+                    </select>
+                </div>
+                <div class="form-group col-sm-7">
+                    <label for="wellStatus">*Well Status</label>
+                    <select class="form-control" id="wellStatus" ng-model="models.wellStatusId"
+                            ng-options="models.wellStatus.id as models.wellStatus.name in models.wellStatus">
+                        <option value="">Please select...</option>
+                    </select>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label for="country">*Country</label>
+                    <input type="text" class="form-control" id="country" ng-model="models.country" readonly>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label for="location">*Location</label>
+                    <input type="text" class="form-control" id="location" ng-model="models.location" readonly>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-5">
+                    <label for="intervalTime">*Interval Time (seg)</label>
+                    <input type="text" class="form-control" id="intervalTime" ng-model="models.intervalTime">
+                </div>
+                <div class="form-group col-sm-6">
+                    <label for="intervalDepth">*Interval Depth</label>
+                    <input type="text" class="form-control" id="intervalDepth" ng-model="models.intervalDepth">
+                </div>
+                <div class="form-group col-sm-1">
+                    <label></label>
+                    <select class="form-control" id="intervalDepthUnit" ng-model="models.intervalDepthUnitId"
+                            ng-options="models.intervalDepthUnit.id as models.intervalDepthUnit.name in models.intervalDepthUnit"
+                            readonly></select>
+                </div>
+                
+            </div>
+            <button type="submit" class="btn" ng-if="!isUpdateWell">CREATE</button>
+        </div>
+        <div class="well-other-options">
+            <div class="row">
+                <h4><b>MORE INFORMATION</b> (OPTIONAL)</h4>
+            </div>
+            <div class="row">
+                <div class="col-sm-15">
+                    <div class="row">
+                        <div class="form-group col-sm-10">
+                            <label for="initializeDepth">Initialize Depth</label>
+                            <input type="text" class="form-control" id="initializeDepth"
+                                   ng-model="models.initializeDepth">
+                        </div>
+                        <div class="form-group col-sm-10">
+                            <label for="spudDate">Spud Date</label>
+                            <input class="form-control" id="spudDate" ng-model="models.spudDate">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-10">
+                            <label for="classificationWell">Classification Well</label>
+                            <select class="form-control" id="classificationWell"
+                                    ng-model="models.classificationWellId"
+                                    ng-options="models.classificationWell.id as models.classificationWell.name in models.classificationWell">
+                                <option value="">Please select...</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-sm-10">
+                            <label for="wellOperator">Well Operator</label>
+                            <select class="form-control" id="wellOperator" ng-model="models.wellOperatorId"
+                                    ng-options="models.wellOperator.name as models.wellOperator.name in models.wellOperator">
+                                <option value="">Please select...</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-10">
+                            <label for="rig">Rig</label>
+                            <select class="form-control" id="rig" ng-model="models.rigId"
+                                    ng-options="models.rig.id as models.rig.name in models.rig">
+                                <option value="">Please select...</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-sm-10">
+                            <label for="mudLoggingUnit">MudLogging Unit</label>
+                            <select class="form-control" id="mudLoggingUnit" ng-model="models.mudLoggingUnitId"
+                                    ng-options="models.mudLoggingUnit.id as models.mudLoggingUnit.name in models.mudLoggingUnit">
+                                <option value="">Please select...</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-20">
+                            <label for="comments">Comments</label>
+                            <textarea class="form-control" rows="3" id="comments" ng-model="models.comments"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-9">
+                    <div class="row">
+                        <div class="form-group">
+                            <label for="latitude">Latitude</label>
+                            <input type="text" class="form-control" id="latitude" ng-model="models.latitude">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <label for="longitude">Longitude</label>
+                            <input type="text" class="form-control" id="longitude" ng-model="models.longitude">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <label for="groundElevation">Ground Elevation</label>
+                            <input type="text" class="form-control" id="groundElevation"
+                                   ng-model="models.groundElevation">
+                        </div>
+                        <div class="form-group">
+                            <label for="KBElevation">KB Elevation</label>
+                            <input type="text" class="form-control" id="KBElevation" ng-model="models.KBElevation">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn" ng-if="isUpdateWell">UPDATE</button>
+    </form>
+</div>

@@ -5,7 +5,7 @@ function MainController($scope, $log, $location) {
     };
 
     var init = function () {
-        $log.info('Controller for Create Ownership function loaded');
+        $log.info('Controller for CreateUpdate Ownership function loaded');
     };
 
     init();
