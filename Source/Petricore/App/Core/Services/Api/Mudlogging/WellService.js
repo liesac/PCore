@@ -20,9 +20,9 @@ function wellService(baseService, appSettings) {
         return baseService.getResource(processedUrl, callback, callbackError);
     };
 
-    var postWell = function (params, callback, callbackError) {
+    var postWell = function (params, dataReq, callback, callbackError) {
         var processedUrl = baseService.setParams(params, appSettings.mudLoggingApiUrl, 'wells');
-        return baseService.saveResource(processedUrl, callback, callbackError);
+        return baseService.saveResource(processedUrl, null, dataReq, callback, callbackError);
     };
 
     var getWellById = function (params, callback, callbackError) {

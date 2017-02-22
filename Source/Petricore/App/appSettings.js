@@ -1,4 +1,4 @@
 module.exports = {
     securityApiUrl: 'http://localhost:53787/api/',
-    mudLoggingApiUrl: ''
+    mudLoggingApiUrl: 'http://cratos:9002/'
 };

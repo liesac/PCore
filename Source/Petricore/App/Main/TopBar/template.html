@@ -1,6 +1,8 @@
 <div class="container-fluid">
-   <!-- <ul class="nav navbar-nav navbar-right">
-        <li class="navbar-text">{{userName}}</li>
-        <li><a href="" ng-click="logOut()">Log out</a></li>
-    </ul>-->
+    <h3>
+        <b ng-repeat="breadcrumb in breadcrumbs">
+            {{breadcrumb}}
+            <span ng-if="!$last"><b> > </b></span>
+        </b>
+    </h3>
 </div>

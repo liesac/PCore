@@ -58,7 +58,7 @@ function sessionStorageService() {
     var getApplicationTicket = function () {
         return getObjectSession('ApplicationTicket');
     };
-    
+
     var setApplicationId = function (data) {
         setObjectSession('ApplicationId', data);
     };
@@ -66,7 +66,7 @@ function sessionStorageService() {
     var getApplicationId = function () {
         return getObjectSession('ApplicationId');
     };
-    
+
     var setUserApplication = function (data) {
         setObjectSession('UserApplication', data);
     };
@@ -74,7 +74,7 @@ function sessionStorageService() {
     var getUserApplication = function () {
         return getObjectSession('UserApplication');
     };
-    
+
     var setRoleUserApplication = function (data) {
         setObjectSession('RoleUserApplication', data);
     };
@@ -82,7 +82,7 @@ function sessionStorageService() {
     var getRoleUserApplication = function () {
         return getObjectSession('RoleUserApplication');
     };
-    
+
     var setRoleMenu = function (data) {
         setObjectSession('RoleMenu', data);
     };
@@ -90,6 +90,15 @@ function sessionStorageService() {
     var getRoleMenu = function () {
         return getObjectSession('RoleMenu');
     };
+
+    var setBreadcrumb = function (data) {
+        setObjectSession('Breadcrumb', data);
+    };
+
+    var getBreadcrumb = function () {
+        return getObjectSession('Breadcrumb');
+    };
+
 
     return {
         setApplicationTicket: setApplicationTicket,
@@ -101,7 +110,9 @@ function sessionStorageService() {
         setRoleUserApplication: setRoleUserApplication,
         getRoleUserApplication: getRoleUserApplication,
         setRoleMenu: setRoleMenu,
-        getRoleMenu: getRoleMenu
+        getRoleMenu: getRoleMenu,
+        setBreadcrumb: setBreadcrumb,
+        getBreadcrumb: getBreadcrumb
     };
 }
 
