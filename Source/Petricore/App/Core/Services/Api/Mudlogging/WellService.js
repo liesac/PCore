@@ -26,7 +26,7 @@ function wellService(baseService, appSettings) {
     };
 
     var getWellById = function (params, callback, callbackError) {
-        var processedUrl = baseService.setParams(params, appSettings.mudLoggingApiUrl, 'wells');
+        var processedUrl = baseService.setParams(params, appSettings.mudLoggingApiUrl, 'wells/:id');
         return baseService.getResource(processedUrl, callback, callbackError);
     };
 
@@ -39,7 +39,7 @@ function wellService(baseService, appSettings) {
         getClassificationWells: getClassificationWells,
         getWellOperators: getWellOperators,
         getWellStatus: getWellStatus,
-        getWell: getWellById,
+        getWellById: getWellById,
         postWell: postWell,
         getWells: getWells,
         putWell: putWell

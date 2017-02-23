@@ -10,9 +10,9 @@ function MainController($scope, $log, $location, $rootScope, oilFieldsService, r
     var init = function (configValidation) {
         $scope.addFormClicked = false;
         $scope.configValidation = configValidation == null ? [] : configValidation;
+        $scope.isUpdateWell = $location.path().search('update') >= 0;
         populateDropDowns();
         $scope.models = {};
-        $scope.isUpdateWell = $location.path().search('update') >= 0;
         $rootScope.$emit('breadcrumbChange', {
             breadcrumb: $scope.isUpdateWell ? ['WELL', 'UPDATE WELL'] : ['WELL', 'CREATE WELL']
         });
@@ -60,27 +60,27 @@ function MainController($scope, $log, $location, $rootScope, oilFieldsService, r
     };
 
     var onGetWellById = function (data) {
-        $scope.models.wellId = data.idWell;
-        $scope.models.wellName = data.nameWell;
-        $scope.models.oilFieldId = data.oilfield.id;
-        $scope.models.timeZone = data.oilfield.location.country.timezone.description;
-        $scope.models.unitSystemId = data.unitsystem.id;
-        $scope.models.wellStatusId = data.wellstatus.id;
-        $scope.models.country = data.oilfield.location.country.displayName;
-        $scope.models.location = data.oilfield.location.name;
-        $scope.models.intervalTime = data.intervalTime;
-        $scope.models.intervalDepth = data.intervalDepth;
+        $scope.models.wellId = data.IdWell;
+        $scope.models.wellName = data.NameWell;
+        $scope.models.oilFieldId = data.Oilfield.Id;
+        $scope.models.timeZone = data.Oilfield.Location.Country.TimeZone.Description;
+        $scope.models.unitSystemId = data.UnitSystem.Id;
+        $scope.models.wellStatusId = data.WellStatus.Id;
+        $scope.models.country = data.Oilfield.Location.Country.DisplayName;
+        $scope.models.location = data.Oilfield.Location.Name;
+        $scope.models.intervalTime = data.IntervalTime;
+        $scope.models.intervalDepth = data.IntervalDepth;
         $scope.models.intervalDepthUnitId = '';
-        $scope.models.initializeDepth = data.initializeDepth;
-        $scope.models.spudDate = data.spudDate;
-        $scope.models.classificationWellId = data.clasificationwell.id;
-        $scope.models.wellOperatorId = data.welloperator.id;
-        $scope.models.rigId = data.rig.id;
-        $scope.models.mudLoggingUnitId = data.mudloggingunit.id;
-        $scope.models.comments = data.comments;
-        $scope.models.latitude = data.latitude;
-        $scope.models.longitude = data.longitude;
-        $scope.models.groundElevation = data.groundElevation;
+        $scope.models.initializeDepth = data.InitializeDepth;
+        $scope.models.spudDate = data.SpudDate;
+        $scope.models.classificationWellId = data.ClasificationWell.Id;
+        $scope.models.wellOperatorId = data.WellOperator.Id;
+        $scope.models.rigId = data.Rig.Id;
+        $scope.models.mudLoggingUnitId = data.MudloggingUnit.Id;
+        $scope.models.comments = data.Comments;
+        $scope.models.latitude = data.Latitude;
+        $scope.models.longitude = data.Longitude;
+        $scope.models.groundElevation = data.GroundElevation;
         $scope.models.KBElevation = data.kbElevation;
     };
 
@@ -142,7 +142,7 @@ function MainController($scope, $log, $location, $rootScope, oilFieldsService, r
         getRigDropDowns();
         getOilFieldDropDowns();
 
-        if ($scope.isUpdate) {
+        if ($scope.isUpdateWell) {
             getWellListDropDowns();
         }
     };
@@ -171,15 +171,19 @@ function MainController($scope, $log, $location, $rootScope, oilFieldsService, r
     };
 
     $scope.getOilFieldInfo = function () {
-        var parameters = [{
+        var urlParameters = [{
             Name: 'id',
             Value: $scope.models.oilFieldId
         }];
-        oilFieldsService.getOilFieldsById(parameters, onGetOilFieldsById, onError);
+        oilFieldsService.getOilFieldsById(urlParameters, onGetOilFieldsById, onError);
     };
 
     $scope.getWellInfo = function () {
-        wellService.getWellById($scope.models.wellId, onGetWellById, onError);
+        var urlParameters = [{
+            Name: 'id',
+            Value: $scope.models.wellId
+        }];
+        wellService.getWellById(urlParameters, onGetWellById, onError);
     };
 
     $scope.saveWell = function () {
