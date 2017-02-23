@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "createStyle.css",
+  "sources": [
+    "createStyle.scss",
+    "../../../Style/variables.scss"
+  ],
+  "mappings": ";AACA,AAAA,oBAAoB,CAAC;EACpB,gBAAgB,ECoDA,OAAO,GDxCvB;;EAbD,AAGC,oBAHmB,CAGnB,MAAM,CAAC;IACN,gBAAgB,ECiDD,OAAO;IDhDtB,QAAQ,EAAE,QAAS;IACnB,OAAO,EAAE,CAAE,GACX;;EAPF,AASC,oBATmB,CASnB,EAAE,CAAC;IACF,QAAQ,EAAE,QAAS;IACnB,GAAG,EAAE,KAAM,GACX",
+  "names": []
+}
