@@ -1,0 +1,15 @@
+@import '../../../Style/variables.scss';
+.well-main-container {
+	background-color: $gray-bg-fields;
+	
+	.bg-hr {
+		background-color: $gray-bg-fields;
+		position: relative;
+		z-index: 1;
+	}
+	
+	hr {
+		position: relative;
+		top: -10px;
+	}
+}
