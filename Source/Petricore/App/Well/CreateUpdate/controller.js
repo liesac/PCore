@@ -1,7 +1,7 @@
 var swal = require('sweetalert2');
 require('sweetalert2/dist/sweetalert2.css');
 
-function MainController($scope, $log, $location, $rootScope, oilFieldsService, rigService, utilService, wellService, sessionStorageService, validationService) {
+function MainController($scope, $log, $location, $rootScope, appSettings, oilFieldsService, rigService, utilService, wellService, validationService) {
 
     $scope.go = function (path) {
         $location.path(path);
@@ -11,8 +11,9 @@ function MainController($scope, $log, $location, $rootScope, oilFieldsService, r
         $scope.addFormClicked = false;
         $scope.configValidation = configValidation == null ? [] : configValidation;
         $scope.isUpdateWell = $location.path().search('update') >= 0;
-        populateDropDowns();
         $scope.models = {};
+        populateForm();
+        setConstants();
         $rootScope.$emit('breadcrumbChange', {
             breadcrumb: $scope.isUpdateWell ? ['WELL', 'UPDATE WELL'] : ['WELL', 'CREATE WELL']
         });
@@ -62,26 +63,32 @@ function MainController($scope, $log, $location, $rootScope, oilFieldsService, r
     var onGetWellById = function (data) {
         $scope.models.wellId = data.IdWell;
         $scope.models.wellName = data.NameWell;
-        $scope.models.oilFieldId = data.Oilfield.Id;
-        $scope.models.timeZone = data.Oilfield.Location.Country.TimeZone.Description;
+        $scope.models.oilFieldId = data.OilField.Id;
         $scope.models.unitSystemId = data.UnitSystem.Id;
         $scope.models.wellStatusId = data.WellStatus.Id;
-        $scope.models.country = data.Oilfield.Location.Country.DisplayName;
-        $scope.models.location = data.Oilfield.Location.Name;
         $scope.models.intervalTime = data.IntervalTime;
         $scope.models.intervalDepth = data.IntervalDepth;
         $scope.models.intervalDepthUnitId = '';
         $scope.models.initializeDepth = data.InitializeDepth;
         $scope.models.spudDate = data.SpudDate;
-        $scope.models.classificationWellId = data.ClasificationWell.Id;
-        $scope.models.wellOperatorId = data.WellOperator.Id;
+        $scope.models.classificationWellId = data.IdClasificationWell;
+        $scope.models.wellOperatorId = data.IdWellOperator;
         $scope.models.rigId = data.Rig.Id;
-        $scope.models.mudLoggingUnitId = data.MudloggingUnit.Id;
+        $scope.models.mudLoggingUnitId = data.IdMudLoggingUnit;
         $scope.models.comments = data.Comments;
         $scope.models.latitude = data.Latitude;
         $scope.models.longitude = data.Longitude;
         $scope.models.groundElevation = data.GroundElevation;
-        $scope.models.KBElevation = data.kbElevation;
+        $scope.models.KBElevation = data.KbElevation;
+        $scope.getOilFieldInfo();
+        $scope.getUnitSystem();
+    };
+
+    var onGetUnitSystemById = function (data) {
+        $scope.models.intervalDepthUnit = data;
+        if (data.length === 1) {
+            $scope.models.intervalDepthUnitId = data[0].Id;
+        }
     };
 
     var onSaveWell = function () {
@@ -98,6 +105,16 @@ function MainController($scope, $log, $location, $rootScope, oilFieldsService, r
                 text: response.data.Message,
                 type: 'error',
                 confirmButtonText: 'Close'
+            });
+        } else if (response.status === 409) {
+            swal({
+                text: response.data,
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Confirm',
+                cancelButtonText: 'Cancel'
+            }).then(function () {
+                $scope.saveWell(true);
             });
         }
     };
@@ -136,18 +153,23 @@ function MainController($scope, $log, $location, $rootScope, oilFieldsService, r
         wellService.getWells(null, onGetWellListDropDowns, onError);
     };
 
-    var populateDropDowns = function () {
+    var getConstants = function () {
+        //TODO
+    };
+
+    var populateForm = function () {
         getWellsDropDowns();
         getUtilDropDowns();
         getRigDropDowns();
         getOilFieldDropDowns();
+        getConstants();
 
         if ($scope.isUpdateWell) {
             getWellListDropDowns();
         }
     };
 
-    var getModelsData = function () {
+    var getModelsData = function (forceLogging) {
         return {
             Comments: $scope.models.comments,
             GroundElevation: $scope.models.groundElevation,
@@ -161,13 +183,20 @@ function MainController($scope, $log, $location, $rootScope, oilFieldsService, r
             IdStatus: $scope.models.wellStatusId,
             InitializeDepth: $scope.models.initializeDepth,
             IntervalDepth: $scope.models.intervalDepth,
+            IdUnitIntervalDepth: $scope.models.intervalDepthUnitId,
             IntervalTime: $scope.models.intervalTime,
             kbElevation: $scope.models.KBElevation,
             Latitude: $scope.models.latitude,
             Longitude: $scope.models.longitude,
             NameWell: $scope.models.wellName,
-            SpudDate: $scope.models.spudDate
+            SpudDate: $scope.models.spudDate,
+            ChangeStatus: forceLogging ? forceLogging : false
         };
+    };
+
+    var setConstants = function () {
+        $scope.models.intervalTime = $scope.models.intervalTime ? $scope.models.intervalTime : appSettings.petricoreConstants.intervalTime;
+        $scope.models.intervalDepth = $scope.models.intervalDepth ? $scope.models.intervalDepth : appSettings.petricoreConstants.intervalDepth;
     };
 
     $scope.getOilFieldInfo = function () {
@@ -181,22 +210,41 @@ function MainController($scope, $log, $location, $rootScope, oilFieldsService, r
     $scope.getWellInfo = function () {
         var urlParameters = [{
             Name: 'id',
-            Value: $scope.models.wellId
+            Value: $scope.models.wellListId
         }];
         wellService.getWellById(urlParameters, onGetWellById, onError);
     };
 
-    $scope.saveWell = function () {
+    $scope.getUnitSystem = function () {
+        if ($scope.models.unitSystemId !== undefined) {
+            var urlParameters = [{
+                Name: 'id',
+                Value: $scope.models.unitSystemId
+            }];
+            utilService.getUnitSystemById(urlParameters, onGetUnitSystemById, onError);
+        } else {
+            $scope.models.intervalDepthUnit = [];
+        }
+    };
+
+    $scope.saveWell = function (forceLogging) {
         $scope.addFormClicked = true;
         if ($scope.wellForm.$valid) {
-            var data = getModelsData();
+            var data = getModelsData(forceLogging);
             wellService.postWell(null, data, onSaveWell, onSaveWellError);
         }
     };
 
     $scope.updateWell = function () {
-        var data = getModelsData();
-        wellService.putWell([data], onPutWell, onError);
+        $scope.addFormClicked = true;
+        if ($scope.wellForm.$valid) {
+            var urlParameters = [{
+                Name: 'id',
+                Value: $scope.models.wellListId,
+                data: getModelsData()
+            }];
+            wellService.putWell(urlParameters, onPutWell, onError);
+        }
     };
 
     $scope.dismissModal = function () {
@@ -235,5 +283,5 @@ function MainController($scope, $log, $location, $rootScope, oilFieldsService, r
 
 }
 
-MainController.$inject = ['$scope', '$log', '$location', '$rootScope', 'oilFieldsService', 'rigService', 'utilService', 'wellService', 'sessionStorageService', 'validationService'];
+MainController.$inject = ['$scope', '$log', '$location', '$rootScope', 'appSettings', 'oilFieldsService', 'rigService', 'utilService', 'wellService', 'validationService'];
 module.exports = MainController;

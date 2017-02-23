@@ -10,10 +10,15 @@ function utilService(baseService, appSettings) {
         return baseService.getResource(processedUrl, callback, callbackError);
     };
 
+    var getUnitSystemById = function (params, callback, callbackError) {
+        var processedUrl = baseService.setParams(params, appSettings.mudLoggingApiUrl, 'units/unitsystem/:id');
+        return baseService.getResource(processedUrl, callback, callbackError);
+    };
 
     return {
         getMudLoggingUnits: getMudLoggingUnits,
-        getUnitSystems: getUnitSystems
+        getUnitSystems: getUnitSystems,
+        getUnitSystemById: getUnitSystemById
     };
 
 }

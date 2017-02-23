@@ -31,8 +31,8 @@ function wellService(baseService, appSettings) {
     };
 
     var putWell = function (params, callback, callbackError) {
-        var processedUrl = baseService.setParams(params, appSettings.mudLoggingApiUrl, 'wells' );
-        return baseService.updateResource(processedUrl, callback, callbackError);
+        var processedUrl = baseService.setParams(params, appSettings.mudLoggingApiUrl, 'wells/:id');
+        return baseService.updateResource(processedUrl, null, params[0].data, callback, callbackError);
     };
 
     return {
