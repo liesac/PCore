@@ -2,7 +2,7 @@
 	<div class="well-main-container">
 		<div class="clearfix" ng-if="isUpdateWell">
 			<div class="form-group col-xs-24 col-sm-12 col-md-12">
-				<label for="wellList">*Well List</label>
+				<label for="wellList" class="m">Well List</label>
 				<select class="form-control" id="wellList" ng-model="models.wellListId"
 						ng-options="option.Id as option.NameWell for option in models.wellList" ng-change="getWellInfo()">
 					<option value="">Please select...</option>
@@ -11,7 +11,7 @@
 		</div>
 		<div class="clearfix">
 			<div class="form-group col-xs-24 col-sm-12 col-md-6">
-				<label for="wellId" class="m">*Well ID</label>
+				<label for="wellId" class="m">Well ID</label>
 				<input type="text" class="form-control" id="wellId" maxlength="50" ng-model="models.wellId" data-isRequired="true"
 					   data-isRequired="true" custom-validation-ceo>
 			</div>
@@ -21,7 +21,7 @@
 					   data-isRequired="true" custom-validation-ceo>
 			</div>
 			<div class="form-group col-xs-24 col-sm-12 col-md-6">
-				<label for="wellStatus" class="m">*Well Status</label>
+				<label for="wellStatus" class="m">Well Status</label>
 				<select class="form-control" id="wellStatus" ng-model="models.wellStatusId"
 						ng-options="option.Id as option.Name for option in models.wellStatus" data-isRequired="true"
 						custom-validation-ceo>
@@ -39,7 +39,7 @@
 		</div>
 		<div class="clearfix">
 			<div class="form-group col-xs-24 col-sm-12 col-md-6">
-				<label for="oilFields" class="m">*Oil Field</label>
+				<label for="oilFields" class="m">Oil Field</label>
 				<select class="form-control" id="oilFields" ng-model="models.oilFieldId"
 						ng-change="getOilFieldInfo()"
 						ng-options="option.Id as option.Name for option in models.oilFields" data-isRequired="true"
@@ -56,7 +56,7 @@
 				<input type="text" class="form-control" id="location" ng-model="models.location" readonly>
 			</div>
 			<div class="form-group col-xs-24 col-sm-12 col-md-6">
-				<label for="timeZone" class="m">Time Zone</label>
+				<label for="timeZone">Time Zone</label>
 				<input type="text" class="form-control" id="timeZone" ng-model="models.timeZone"
 					   data-isRequired="true" custom-validation-ceo readonly>
 			</div>
@@ -69,7 +69,7 @@
 			</div>
 			<div class="form-group col-xs-24 col-sm-12 col-md-6">
 				<div class="clearfix">
-					<label for="intervalDepth" class="m bg-hr">*Interval Depth</label>
+					<label for="intervalDepth" class="m bg-hr">Interval Depth</label>
 					<hr>					
 				</div>
 				<div class="clearfix">
