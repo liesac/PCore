@@ -71,10 +71,10 @@ function MainController($scope, $log, $location, $rootScope, appSettings, oilFie
         $scope.models.intervalDepthUnitId = '';
         $scope.models.initializeDepth = data.InitializeDepth;
         $scope.models.spudDate = data.SpudDate;
-        $scope.models.classificationWellId = data.IdClasificationWell;
-        $scope.models.wellOperatorId = data.IdWellOperator;
+        $scope.models.classificationWellId = data.ClasificationWell.Id;
+        $scope.models.wellOperatorId = data.WellOperator.Id;
         $scope.models.rigId = data.Rig.Id;
-        $scope.models.mudLoggingUnitId = data.IdMudLoggingUnit;
+        $scope.models.mudLoggingUnitId = data.MudLoggingUnit.Id;
         $scope.models.comments = data.Comments;
         $scope.models.latitude = data.Latitude;
         $scope.models.longitude = data.Longitude;
