@@ -1,8 +1,6 @@
-<div class="container-fluid">
-    <h3>
-        <b ng-repeat="breadcrumb in breadcrumbs">
-            {{breadcrumb}}
-            <span ng-if="!$last"><b> > </b></span>
-        </b>
-    </h3>
+<div class="container-fluid p0-l p0-r">
+	<span ng-repeat="breadcrumb in breadcrumbs">
+		{{breadcrumb}}
+		<span ng-if="!$last"><span class="ar-bd">></span></span>
+	</span>
 </div>

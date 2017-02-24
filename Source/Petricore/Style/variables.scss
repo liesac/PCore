@@ -47,7 +47,13 @@ $alert-messages:#FFB415;
 $success-messages:#40C400;
 $alert-messages:#FFB415;
 
-/////////////////////////////////
+/////////////////////////////////jmoreno
+$f-sm: "(min-width: 768px)";
+$f-md: "(min-width: 992px)";
+$f-lg: "(min-width: 1200px)";
+$u-sm: "(max-width: 767px)";
+$u-md: "(max-width: 991px)";
+$u-lg: "(max-width: 1199px)";
 $gray-border: #d3d3d3;
 $red: #f00;
 $label: #777;
@@ -55,4 +61,10 @@ $readOnly: #fcfbfb;
 $gray-bg-fields: #faf9f8;
 $focus: #66afe9;
 $hr: #bdbdbd;
+$btn: #79cda3;
+$menu: #78c2c3;
+$hover-btn: #b4e2cb;
+$white: #fff;
+$label-border-green-blue: #78c0c3;
+$bdc: #525259;
 

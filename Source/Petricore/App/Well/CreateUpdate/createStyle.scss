@@ -1,6 +1,8 @@
 @import '../../../Style/variables.scss';
 .well-main-container {
 	background-color: $gray-bg-fields;
+	padding: 30px 0;
+	border-top: 1px solid $label-border-green-blue;
 	
 	.bg-hr {
 		background-color: $gray-bg-fields;
@@ -8,8 +10,30 @@
 		z-index: 1;
 	}
 	
-	hr {
+}
+
+hr {
+	position: relative;
+	top: -15px;
+}
+
+.well-other-options {
+	padding: 30px 0;
+
+	.bg-hr-w {
+		background-color: $white;
+		color: $label-border-green-blue;
 		position: relative;
-		top: -10px;
+		z-index: 1;
+	}
+	
+	hr {
+		border-top-color: $label-border-green-blue;
+	}
+	
+	.border-l {
+		@media #{$f-sm}{
+			border-right: 1px solid $gray-border;
+		}
 	}
 }
