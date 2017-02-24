@@ -71,7 +71,7 @@ function MainController($scope, $log, $location, $rootScope, appSettings, oilFie
         $scope.models.intervalDepth = data.IntervalDepth;
         $scope.models.intervalDepthUnitId = '';
         $scope.models.initializeDepth = data.InitializeDepth;
-        $scope.models.spudDate = moment(data.SpudDate).format('MM/DD/YYYY');
+        $scope.models.spudDate = data.SpudDate ? moment(data.SpudDate).format('MM/DD/YYYY') : '';
         $scope.models.classificationWellId = data.ClasificationWell.Id;
         $scope.models.wellOperatorId = data.WellOperator.Id;
         $scope.models.rigId = data.Rig.Id;
@@ -126,6 +126,7 @@ function MainController($scope, $log, $location, $rootScope, appSettings, oilFie
             type: 'success',
             confirmButtonText: 'Close'
         });
+        getWellListDropDowns();
     };
 
     var onUpdateError = function (error) {
@@ -207,7 +208,7 @@ function MainController($scope, $log, $location, $rootScope, appSettings, oilFie
             Latitude: $scope.models.latitude,
             Longitude: $scope.models.longitude,
             NameWell: $scope.models.wellName,
-            SpudDate: moment($scope.models.spudDate, 'MM/DD/YYYY').format(),
+            SpudDate: $scope.models.spudDate ? moment($scope.models.spudDate, 'MM/DD/YYYY').format() : null,
             ChangeStatus: forceLogging ? forceLogging : false
         };
     };
@@ -215,6 +216,12 @@ function MainController($scope, $log, $location, $rootScope, appSettings, oilFie
     var setConstants = function () {
         $scope.models.intervalTime = $scope.models.intervalTime ? $scope.models.intervalTime : appSettings.petricoreConstants.intervalTime;
         $scope.models.intervalDepth = $scope.models.intervalDepth ? $scope.models.intervalDepth : appSettings.petricoreConstants.intervalDepth;
+    };
+
+    var resetModels = function () {
+        for (var model in $scope.models) {
+            $scope.models[model] = '';
+        }
     };
 
     $scope.getOilFieldInfo = function () {
@@ -226,11 +233,16 @@ function MainController($scope, $log, $location, $rootScope, appSettings, oilFie
     };
 
     $scope.getWellInfo = function () {
-        var urlParameters = [{
-            Name: 'id',
-            Value: $scope.models.wellListId
-        }];
-        wellService.getWellById(urlParameters, onGetWellById, onError);
+        if ($scope.models.wellListId) {
+            var urlParameters = [{
+                Name: 'id',
+                Value: $scope.models.wellListId
+            }];
+            wellService.getWellById(urlParameters, onGetWellById, onError);
+        } else {
+            resetModels();
+        }
+
     };
 
     $scope.getUnitSystem = function () {

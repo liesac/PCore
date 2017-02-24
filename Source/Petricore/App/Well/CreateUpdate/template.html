@@ -13,18 +13,18 @@
 			<div class="form-group col-xs-24 col-sm-12 col-md-6">
 				<label for="wellId" class="m">Well ID</label>
 				<input type="text" class="form-control" id="wellId" maxlength="50" ng-model="models.wellId" data-isRequired="true"
-					   data-isRequired="true" custom-validation-ceo>
+					   data-isRequired="true" ng-disabled="!models.wellListId && isUpdateWell" custom-validation-ceo>
 			</div>
 			<div class="form-group col-xs-24 col-sm-12 col-md-6">
 				<label for="wellName" class="m">Well Name</label>
 				<input type="text" class="form-control" id="wellName" ng-model="models.wellName" maxlength="500"
-					   data-isRequired="true" custom-validation-ceo>
+					   data-isRequired="true" ng-disabled="!models.wellListId && isUpdateWell" custom-validation-ceo>
 			</div>
 			<div class="form-group col-xs-24 col-sm-12 col-md-6">
 				<label for="wellStatus" class="m">Well Status</label>
 				<select class="form-control" id="wellStatus" ng-model="models.wellStatusId"
 						ng-options="option.Id as option.Name for option in models.wellStatus" data-isRequired="true"
-						custom-validation-ceo>
+						ng-disabled="!models.wellListId && isUpdateWell" custom-validation-ceo>
 					<option value="">Please select...</option>
 				</select>
 			</div>
@@ -32,7 +32,7 @@
 				<label for="unitSystem" class="m">Unit System</label>
 				<select class="form-control" id="unitSystem" ng-model="models.unitSystemId"
 						ng-options="option.Id as option.Name for option in models.unitSystem" data-isRequired="true" ng-change="getUnitSystem()"
-						custom-validation-ceo>
+						ng-disabled="!models.wellListId && isUpdateWell" custom-validation-ceo>
 					<option value="">Please select...</option>
 				</select>
 			</div>
@@ -43,7 +43,7 @@
 				<select class="form-control" id="oilFields" ng-model="models.oilFieldId"
 						ng-change="getOilFieldInfo()"
 						ng-options="option.Id as option.Name for option in models.oilFields" data-isRequired="true"
-						custom-validation-ceo>
+						ng-disabled="!models.wellListId && isUpdateWell" custom-validation-ceo>
 					<option value="">Please select...</option>
 				</select>
 			</div>
@@ -65,17 +65,17 @@
 			<div class="form-group col-xs-24 col-sm-12 col-md-6">
 				<label for="intervalTime" class="m">Interval Time (seg)</label>
 				<input type="number" class="form-control" id="intervalTime" maxlength="3" data-typeValidation="number" data-maxValue="120" data-minValue="0"
-                           ng-model="models.intervalTime" data-isRequired="true" custom-validation-ceo>
+					   ng-disabled="!models.wellListId && isUpdateWell" ng-model="models.intervalTime" data-isRequired="true" custom-validation-ceo>
 			</div>
 			<div class="form-group col-xs-24 col-sm-12 col-md-6">
 				<div class="clearfix">
 					<label for="intervalDepth" class="m bg-hr">Interval Depth</label>
-					<hr>					
+					<hr>
 				</div>
 				<div class="clearfix">
 					<div class="col-xs-17 col-md-15  col-lg-16 p0-l">
 						<input type="number" step="0.1" class="form-control" id="intervalDepth"
-							   ng-model="models.intervalDepth"
+							   ng-model="models.intervalDepth" ng-disabled="!models.wellListId && isUpdateWell"
 							   data-isRequired="true" custom-validation-ceo>
 
 					</div>
@@ -98,7 +98,7 @@
 			<div class="col-xs-24">
 				<label class="bg-hr-w">MORE INFORMATION<span>(OPTIONAL)</span>
 				</label>
-				<hr>	
+				<hr>
 			</div>
 		</div>
 		<div class="clearfix">
@@ -107,12 +107,12 @@
 					<div class="form-group col-xs-24 col-sm-11 col-md-10">
 						<label for="initializeDepth">Initialize Depth</label>
 						<input type="number" class="form-control" id="initializeDepth"
-							   ng-model="models.initializeDepth">
+							   ng-model="models.initializeDepth" ng-disabled="!models.wellListId && isUpdateWell">
 					</div>
 					<div class="form-group col-xs-24 col-sm-11 col-md-10">
 						<label for="spudDate">Spud Date</label>
 						<input type="text" class="form-control" id="spudDate" ng-model="models.spudDate"
-							   ui-mask="9?9?/?9?9?/?9?9?9?9?" ui-mask-placeholder="MM/DD/YYYY"
+							   ui-mask="9?9?/?9?9?/?9?9?9?9?" ui-mask-placeholder="MM/DD/YYYY" ng-disabled="!models.wellListId && isUpdateWell"
 							   data-typeValidation="date" model-view-value="true" custom-validation-ceo>
 					</div>
 				</div>
@@ -120,7 +120,7 @@
 					<div class="form-group col-xs-24 col-sm-11 col-md-10">
 						<label for="classificationWell">Classification Well</label>
 						<select class="form-control" id="classificationWell"
-								ng-model="models.classificationWellId"
+								ng-model="models.classificationWellId" ng-disabled="!models.wellListId && isUpdateWell"
 								ng-options="option.Id as option.Name for option in models.classificationWell">
 							<option value="">Please select...</option>
 						</select>
@@ -128,7 +128,8 @@
 					<div class="form-group col-xs-24 col-sm-11 col-md-10">
 						<label for="wellOperator">Well Operator</label>
 						<select class="form-control" id="wellOperator" ng-model="models.wellOperatorId"
-								ng-options="option.Id as option.Name for option in models.wellOperator">
+								ng-options="option.Id as option.Name for option in models.wellOperator"
+								ng-disabled="!models.wellListId && isUpdateWell">
 							<option value="">Please select...</option>
 						</select>
 					</div>
@@ -137,14 +138,16 @@
 					<div class="form-group col-xs-24 col-sm-11 col-md-10">
 						<label for="rig">Rig</label>
 						<select class="form-control" id="rig" ng-model="models.rigId"
-								ng-options="option.Id as option.Name for option in models.rig">
+								ng-options="option.Id as option.Name for option in models.rig"
+								ng-disabled="!models.wellListId && isUpdateWell">
 							<option value="">Please select...</option>
 						</select>
 					</div>
 					<div class="form-group col-xs-24 col-sm-11 col-md-10">
 						<label for="mudLoggingUnit">MudLogging Unit</label>
 						<select class="form-control" id="mudLoggingUnit" ng-model="models.mudLoggingUnitId"
-								ng-options="option.Id as option.Name for option in models.mudLoggingUnit">
+								ng-options="option.Id as option.Name for option in models.mudLoggingUnit"
+								ng-disabled="!models.wellListId && isUpdateWell">
 							<option value="">Please select...</option>
 						</select>
 					</div>
@@ -152,7 +155,7 @@
 				<div class="clearfix">
 					<div class="form-group col-xs-24 col-sm-22 col-md-20">
 						<label for="comments">Comments</label>
-						<textarea class="form-control" rows="3" id="comments" ng-model="models.comments"></textarea>
+						<textarea class="form-control" rows="3" id="comments" ng-model="models.comments" ng-disabled="!models.wellListId && isUpdateWell"></textarea>
 					</div>
 				</div>
 			</div>
@@ -161,25 +164,25 @@
 				<div class="clearfix">
 					<div class="col-xs-24 form-group">
 						<label for="latitude">Latitude</label>
-						<input type="text" class="form-control" id="latitude" ng-model="models.latitude" maxlength="30">
+						<input type="text" class="form-control" id="latitude" ng-model="models.latitude" maxlength="30" ng-disabled="!models.wellListId && isUpdateWell">
 					</div>
 				</div>
 				<div class="clearfix">
 					<div class="col-xs-24 form-group">
 						<label for="longitude">Longitude</label>
-						<input type="text" class="form-control" id="longitude" ng-model="models.longitude" maxlength="30">
+						<input type="text" class="form-control" id="longitude" ng-model="models.longitude" maxlength="30" ng-disabled="!models.wellListId && isUpdateWell">
 					</div>
 				</div>
 				<div class="clearfix">
 					<div class="col-xs-24 col-lg-12 form-group">
 						<label for="groundElevation">Ground Elevation</label>
 						<input type="number" step="0.1" class="form-control" id="groundElevation"
-							   ng-model="models.groundElevation">
+                               ng-disabled="!models.wellListId && isUpdateWell" ng-model="models.groundElevation">
 					</div>
 					<div class="col-xs-24 col-lg-12 form-group">
 						<label for="KBElevation">KB Elevation</label>
 						<input type="number" step="0.1" class="form-control" id="KBElevation"
-							   ng-model="models.KBElevation">
+                               ng-disabled="!models.wellListId && isUpdateWell" ng-model="models.KBElevation">
 					</div>
 				</div>
 			</div>
