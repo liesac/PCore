@@ -1,3 +1,6 @@
+@import '../../../Style/variables.scss';
+@import '../../../Style/icons.scss';
+
 html,
 body {
     font-family: Arial, Helvetica, sans-serif;
@@ -26,17 +29,27 @@ body {
 
 .mainmenu a {
     display: block;
-    background-color: #CCC;
+    background-color: $menu;
     text-decoration: none;
     padding: 10px;
     color: #000;
 }
 
 
-/* add hover behaviour */
 
-.mainmenu a:hover {
-    background-color: #C5C5C5;
+
+.mainmenu {
+	
+	a {
+		/* add hover behaviour */
+		&:hover, &:active, &:focus {
+    		background-color: $menu-hover;
+		}
+	}
+	
+	> li {
+		border-bottom: 1px solid $white;
+	}
 }
 
 
@@ -65,18 +78,18 @@ body {
 
 .submenu a,
 .submenuu a {
-    background-color: #999;
+    background-color: $menu;
 }
 
 
 /* hover behaviour for links inside .submenu */
 
 .submenu a:hover {
-    background-color: #666;
+    background-color: $menu-hover;
 }
 
 .submenuu a:hover {
-    background-color: #666;
+    background-color: $menu-hover;
 }
 
 

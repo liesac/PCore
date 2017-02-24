@@ -74,13 +74,13 @@ body {
 #sidebar-wrapper {
   z-index: 1000;
   position: fixed;
-  left: 150px;
+  left: 75px;
   width: 0;
   height: 100%;
-  margin-left: -150px;
+  margin-left: -75px;
   overflow-y: auto;
   overflow-x: hidden;
-  background: #16193B;
+  background: $menu;
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
@@ -88,7 +88,7 @@ body {
 }
 
 #wrapper.toggled #sidebar-wrapper {
-  width: 150px;
+  width: 75px;
 }
 
 #page-content-wrapper {
@@ -98,7 +98,7 @@ body {
 
 #wrapper.toggled #page-content-wrapper {
   position: absolute;
-  margin-right: -150px;
+  margin-right: -75px;
 }
 
 form {
@@ -110,7 +110,7 @@ form {
 .sidebar-nav {
   position: absolute;
   top: 0;
-  width: 150px;
+  width: 75px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -122,16 +122,10 @@ form {
 }
 
 .sidebar-nav li {
-  line-height: 1.5;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.5s ease;
   span {
     display: block;
     width: 100%;
-    line-height: 2;
-    img {
-      width: 27%;
-    }
   }
   &:hover,
   &.active-menu {
@@ -142,7 +136,6 @@ form {
   }
   ul {
     list-style: none;
-    background: #11132D;
     padding: 0;
     li {
       a {
@@ -159,45 +152,24 @@ form {
 }
 
 .sidebar-nav li a {
-  font-size: $fs3;
   display: block;
   text-decoration: none;
   color: #fff;
   text-align: center;
-  padding: 18px 0;
   transition: all 0.5s ease;
 }
 
 .sidebar-nav li a:hover {
   text-decoration: none;
   color: #fff;
-  background: #42588A;
+  background: $menu-hover;
 }
 
 .sidebar-nav li a:active-menu,
 .sidebar-nav li a:focus {
   text-decoration: none;
-  background: #42588A;
+  background: $menu-hover;
   outline: none;
-}
-
-.sidebar-nav > li.sidebar-brand a {
-  height: 90px;
-  font-size: $fs5;
-  font-style: italic;
-  font-weight: bolder;
-  line-height: 60px;
-  background: #232D5E;
-}
-
-.sidebar-nav > .sidebar-brand a {
-  color: #fff;
-  transition: all 0.5s ease;
-}
-
-.sidebar-nav > .sidebar-brand a:hover {
-  color: #fff;
-  background: none;
 }
 
 ///forms////
@@ -226,20 +198,19 @@ input[type=radio]:focus {
 
 @media(min-width:768px) {
   #wrapper {
-    padding-left: 150px;
+    padding-left: 75px;
   }
   #wrapper.toggled {
     padding-left: 0;
   }
   #sidebar-wrapper {
-    width: 150px;
+    width: 75px;
   }
   #wrapper.toggled #sidebar-wrapper {
     width: 0;
   }
   #page-content-wrapper {
     position: relative;
-    background: $bg-forms;
     overflow-y: auto;
   }
   #wrapper.toggled #page-content-wrapper {
