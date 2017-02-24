@@ -20,17 +20,24 @@ hr.headerDivider {
 
 @import '../../../Style/variables.scss';
 @import '../../../Style/icons.scss';
-@font-face {
+/*@font-face {
   font-family: 'karlaregular';
   src: url('../../../Assets/fonts/Karla-Regular-webfont.eot');
   src: url('../../../Assets/fonts/Karla-Regular-webfont.eot?#iefix') format('embedded-opentype'), url('../../../Assets/fonts/Karla-Regular-webfont.woff2') format('woff2'), url('../../../Assets/fonts/Karla-Regular-webfont.woff') format('woff'), url('../../../Assets/fonts/Karla-Regular-webfont.ttf') format('truetype'), url('../../../Assets/fonts/Karla-Regular-webfont.svg#karlaregular') format('svg');
   font-weight: normal;
   font-style: normal;
+}*/
+
+@font-face {
+  font-family: 'Robotoregular';
+  src: url('../../../Assets/fonts/Roboto-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
 
 body {
-  font-family: 'karlaregular'!important;
-  font-size: $fs3!important;
+  font-family: 'Robotoregular'!important;
+  font-size: 14px;
   background: $bg-container;
 }
 
@@ -428,39 +435,6 @@ ul.nav.nav-tabs {
 }
 
 ///forms////
-.form-group,
-{
-  label {
-    color: $dark-blue;
-    font-weight: 400;
-    margin-bottom: 0;
-  }
-  .form-control {
-    border-radius: 0;
-    border-color: $blue;
-    box-shadow: 1px 1px 1px transparent;
-    transition: all 0.4s;
-    &[disabled] {
-      background: #EDF0F2;
-      opacity: 0.65;
-    }
-    &:focus {
-      border-color: $blue;
-      box-shadow: 0px 1px 4px rgba(52, 70, 140, 0.4);
-    }
-  }
-}
-
-#wrapper .form-control,
-#wrapper-view .form-control {
-  border-radius: 0;
-  border-color: $blue;
-  box-shadow: none;
-  transition: color 3s;
-  &:active {
-    border-color: red;
-  }
-}
 
 label {
   color: $dark-blue;
@@ -481,11 +455,6 @@ label {
 
 .gray {
   color: #586A89;
-}
-
-fieldset[disabled] .form-control {
-  background: #EDF0F2;
-  opacity: 0.65;
 }
 
 .foreign-link {
@@ -793,13 +762,13 @@ fieldset[disabled] .btn {
 
 ///// Field required. ////
 .form-control.required {
-  border-color: red;
+  border-color: $red;
 }
 
 span.required {
   background: $bg-required;
   padding: 4px 7px;
-  color: red;
+  color: $red;
   top: 5px;
   position: relative;
   display: table;
@@ -901,18 +870,6 @@ input[type=radio]:checked:active+.lbl::before {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
   border: 1px solid $dark-blue;
   color: v;
-}
-
-input[type=checkbox]:disabled+.lbl::before,
-input[type=radio]:disabled+.lbl::before,
-input[type=checkbox][disabled]+.lbl::before,
-input[type=radio][disabled]+.lbl::before,
-input[type=checkbox].disabled+.lbl::before,
-input[type=radio].disabled+.lbl::before {
-  background-color: #DDD !important;
-  border-color: #CCC !important;
-  box-shadow: none !important;
-  color: #BBB;
 }
 
 input[type=radio]+.lbl::before {
@@ -1497,3 +1454,73 @@ table.table {
     margin-bottom: 9em;
   }
 }
+
+//////////////////////////fin estilos DAvid Camilo//////////////////////
+$f-sm: "(min-width: 768px)";
+$f-md: "(min-width: 992px)";
+$f-lg: "(min-width: 1200px)";
+$u-sm: "(max-width: 767px)";
+$u-md: "(max-width: 991px)";
+$u-lg: "(max-width: 1199px)";
+
+
+
+@mixin br($px) {
+	-webkit-border-radius: $px;
+	-moz-border-radius: $px;
+	-ms-border-radius: $px;
+	-o-border-radius: $px;
+	border-radius: $px;
+}
+
+input, select {
+	border: 1px solid $gray-border !important;
+	@include br(4px);
+	min-height: 36px;
+	-webkit-box-shadow: none !important;
+	box-shadow: none !important;
+	
+	&[readonly] {
+		background-color: $readOnly !important;
+		
+		&:active, &:focus {
+			border-color: $gray-border !important;
+		}
+	}
+	
+	&:active, &:focus {
+		border-color: $focus !important;
+	}
+	
+}
+
+label {
+	color: $label;
+}
+
+.m {
+	&:before {
+		content: '*';
+		color: $red;
+		position: relative;
+	}
+}
+
+hr {
+	margin: 0;
+	padding: 0;
+	border-top: 1px solid $hr;
+}
+
+.p0-l {
+	@media #{$f-sm} {
+		padding-left: 0;
+	}
+}
+
+.p0-r {
+	@media #{$f-sm} {
+		padding-right: 0;
+	}
+}
+
