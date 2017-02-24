@@ -1,4 +1,5 @@
 var swal = require('sweetalert2');
+var moment = require('moment');
 require('sweetalert2/dist/sweetalert2.css');
 
 function MainController($scope, $log, $location, $rootScope, appSettings, oilFieldsService, rigService, utilService, wellService, validationService) {
@@ -70,7 +71,7 @@ function MainController($scope, $log, $location, $rootScope, appSettings, oilFie
         $scope.models.intervalDepth = data.IntervalDepth;
         $scope.models.intervalDepthUnitId = '';
         $scope.models.initializeDepth = data.InitializeDepth;
-        $scope.models.spudDate = data.SpudDate;
+        $scope.models.spudDate = moment(data.SpudDate).format('MM/DD/YYYY');
         $scope.models.classificationWellId = data.ClasificationWell.Id;
         $scope.models.wellOperatorId = data.WellOperator.Id;
         $scope.models.rigId = data.Rig.Id;
@@ -99,16 +100,16 @@ function MainController($scope, $log, $location, $rootScope, appSettings, oilFie
         });
     };
 
-    var onSaveWellError = function (response) {
-        if (response.data.Message) {
+    var onSaveWellError = function (error) {
+        if (error.data.Message) {
             swal({
-                text: response.data.Message,
+                text: error.data.Message,
                 type: 'error',
                 confirmButtonText: 'Close'
             });
-        } else if (response.status === 409) {
+        } else if (error.status === 409) {
             swal({
-                text: response.data,
+                text: error.data,
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonText: 'Confirm',
@@ -120,8 +121,25 @@ function MainController($scope, $log, $location, $rootScope, appSettings, oilFie
     };
 
     var onPutWell = function () {
-        //TODO
-        $log.info('TODO');
+        swal({
+            text: 'Well updated correctly',
+            type: 'success',
+            confirmButtonText: 'Close'
+        });
+    };
+
+    var onUpdateError = function (error) {
+        if (error.status === 409) {
+            swal({
+                text: error.data,
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Confirm',
+                cancelButtonText: 'Cancel'
+            }).then(function () {
+                $scope.updateWell(true);
+            });
+        }
     };
 
     var onError = function (error) {
@@ -189,7 +207,7 @@ function MainController($scope, $log, $location, $rootScope, appSettings, oilFie
             Latitude: $scope.models.latitude,
             Longitude: $scope.models.longitude,
             NameWell: $scope.models.wellName,
-            SpudDate: $scope.models.spudDate,
+            SpudDate: moment($scope.models.spudDate, 'MM/DD/YYYY').format(),
             ChangeStatus: forceLogging ? forceLogging : false
         };
     };
@@ -235,15 +253,15 @@ function MainController($scope, $log, $location, $rootScope, appSettings, oilFie
         }
     };
 
-    $scope.updateWell = function () {
+    $scope.updateWell = function (forceLogging) {
         $scope.addFormClicked = true;
         if ($scope.wellForm.$valid) {
             var urlParameters = [{
                 Name: 'id',
                 Value: $scope.models.wellListId,
-                data: getModelsData()
+                data: getModelsData(forceLogging)
             }];
-            wellService.putWell(urlParameters, onPutWell, onError);
+            wellService.putWell(urlParameters, onPutWell, onUpdateError);
         }
     };
 
