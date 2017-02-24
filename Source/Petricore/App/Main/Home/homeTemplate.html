@@ -1,14 +1,11 @@
-<div >
+<div>
   <div id="wrapper">
-
-    <!-- Topbar-wrapper -->
-    <nav ui-view="topBar" class="user-header"></nav>
-    <!-- /#topbar-wrapper -->
-
     <div ui-view="menu"></div>
-
     <!-- Features Content -->
     <div id="page-content-wrapper">
+        <!-- Topbar-wrapper -->
+		<nav ui-view="topBar" class="bdc"></nav>
+		<!-- /#topbar-wrapper -->
         <div ui-view></div>
     </div>
     <!-- /#features-content-wrapper -->
