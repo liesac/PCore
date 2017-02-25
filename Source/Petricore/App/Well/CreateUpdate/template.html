@@ -58,7 +58,7 @@
 			<div class="form-group col-xs-24 col-sm-12 col-md-6">
 				<label for="timeZone">Time Zone</label>
 				<input type="text" class="form-control" id="timeZone" ng-model="models.timeZone"
-					   data-isRequired="true" custom-validation-ceo readonly>
+					   data-isRequired="true" readonly>
 			</div>
 		</div>
 		<div class="clearfix">
@@ -101,23 +101,21 @@
 				<hr>
 			</div>
 		</div>
-		<div class="clearfix">
-			<div class="col-xs-24 col-sm-16 p0-l p0-r border-l">
+		<div class="clearfix flex">
+			<div class="col-xs-24 col-sm-15 p0-l p0-r">
 				<div class="clearfix">
-					<div class="form-group col-xs-24 col-sm-11 col-md-10">
+					<div class="form-group col-xs-24 col-sm-8">
 						<label for="initializeDepth">Initialize Depth</label>
 						<input type="number" class="form-control" id="initializeDepth"
 							   ng-model="models.initializeDepth" ng-disabled="!models.wellListId && isUpdateWell">
 					</div>
-					<div class="form-group col-xs-24 col-sm-11 col-md-10">
+					<div class="form-group col-xs-24 col-sm-8">
 						<label for="spudDate">Spud Date</label>
 						<input type="text" class="form-control" id="spudDate" ng-model="models.spudDate"
 							   ui-mask="9?9?/?9?9?/?9?9?9?9?" ui-mask-placeholder="MM/DD/YYYY" ng-disabled="!models.wellListId && isUpdateWell"
 							   data-typeValidation="date" model-view-value="true" custom-validation-ceo>
 					</div>
-				</div>
-				<div class="clearfix">
-					<div class="form-group col-xs-24 col-sm-11 col-md-10">
+					<div class="form-group col-xs-24 col-sm-8">
 						<label for="classificationWell">Classification Well</label>
 						<select class="form-control" id="classificationWell"
 								ng-model="models.classificationWellId" ng-disabled="!models.wellListId && isUpdateWell"
@@ -125,7 +123,9 @@
 							<option value="">Please select...</option>
 						</select>
 					</div>
-					<div class="form-group col-xs-24 col-sm-11 col-md-10">
+				</div>
+				<div class="clearfix">				
+					<div class="form-group col-xs-24 col-sm-8">
 						<label for="wellOperator">Well Operator</label>
 						<select class="form-control" id="wellOperator" ng-model="models.wellOperatorId"
 								ng-options="option.Id as option.Name for option in models.wellOperator"
@@ -133,9 +133,7 @@
 							<option value="">Please select...</option>
 						</select>
 					</div>
-				</div>
-				<div class="clearfix">
-					<div class="form-group col-xs-24 col-sm-11 col-md-10">
+					<div class="form-group col-xs-24 col-sm-8">
 						<label for="rig">Rig</label>
 						<select class="form-control" id="rig" ng-model="models.rigId"
 								ng-options="option.Id as option.Name for option in models.rig"
@@ -143,7 +141,7 @@
 							<option value="">Please select...</option>
 						</select>
 					</div>
-					<div class="form-group col-xs-24 col-sm-11 col-md-10">
+					<div class="form-group col-xs-24 col-sm-8">
 						<label for="mudLoggingUnit">MudLogging Unit</label>
 						<select class="form-control" id="mudLoggingUnit" ng-model="models.mudLoggingUnitId"
 								ng-options="option.Id as option.Name for option in models.mudLoggingUnit"
@@ -153,13 +151,13 @@
 					</div>
 				</div>
 				<div class="clearfix">
-					<div class="form-group col-xs-24 col-sm-22 col-md-20">
+					<div class="form-group col-xs-24">
 						<label for="comments">Comments</label>
 						<textarea class="form-control" rows="3" id="comments" ng-model="models.comments" ng-disabled="!models.wellListId && isUpdateWell"></textarea>
 					</div>
 				</div>
 			</div>
-			<div class="col-sm-1 hidden-xs"></div>
+			<div class="col-sm-offset-1 col-sm-1 hidden-xs border-l"></div>
 			<div class="col-xs-24 col-sm-7 p0-l p0-r">
 				<div class="clearfix">
 					<div class="col-xs-24 form-group">
@@ -188,7 +186,11 @@
 			</div>
 		</div>
 	</div>
-	<button type="submit" class="btn" ng-click="updateWell()" ng-if="isUpdateWell">UPDATE</button>
+	<div class="clearfix">
+		<div class="col-xs-24 text-center">
+			<button type="submit" class="btn" ng-click="updateWell()" ng-if="isUpdateWell">UPDATE</button>
+		</div>
+	</div>
 </form>
 
 <script type="text/ng-template" id="modalSuccessSaveTemplate.html">
