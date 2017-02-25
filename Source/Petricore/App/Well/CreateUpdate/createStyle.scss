@@ -1,7 +1,7 @@
 @import '../../../Style/variables.scss';
 .well-main-container {
 	background-color: $gray-bg-fields;
-	padding: 30px 0;
+	padding: 20px 0;
 	border-top: 1px solid $label-border-green-blue;
 	
 	.bg-hr {
@@ -18,7 +18,7 @@ hr {
 }
 
 .well-other-options {
-	padding: 30px 0;
+	padding: 20px 0;
 
 	.bg-hr-w {
 		background-color: $white;
@@ -33,7 +33,7 @@ hr {
 	
 	.border-l {
 		@media #{$f-sm}{
-			border-right: 1px solid $gray-border;
+			border-left: 1px solid $gray-border;
 		}
 	}
 }
