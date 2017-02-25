@@ -10,22 +10,16 @@
 
 @import '../../../Style/variables.scss';
 @import '../../../Style/icons.scss';
-@font-face {
-  font-family: 'Robotoregular';
-  src: url('../../../Assets/fonts/Roboto-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
 
 body {
-  	font-family: 'Robotoregular'!important;
-  	font-size: 14px;
+  	font-family: 'Roboto', sans-serif !important;
+  	font-size: 12px;
+	@media #{$f-md}{
+		font-size: 14px;
+	}
   	background: $white;
 	height: 100vh;
 	
-	input, select, textarea {
-		font-family: 'Robotoregular'!important;
-	}
 }
 
 #wrapper,
@@ -38,17 +32,7 @@ body {
 }
 
 #wrapper-view {
-  .header-logo {
-    background: #c4cfe4;
-    width: 100%;
-    padding: 8px 15px;
-    color: $dark-blue;
-    .logo {
-      font-size: 28px;
-      font-style: italic;
-      font-weight: bolder;
-    }
-  }
+ 
   #page-content-wrapper {
     background: #F9F9F9;
     padding-top: 5px;
@@ -87,10 +71,6 @@ body {
   transition: all 0.5s ease;
 }
 
-#wrapper.toggled #sidebar-wrapper {
-  width: 75px;
-}
-
 #page-content-wrapper {
   position: absolute;
   padding: 15px;
@@ -103,73 +83,6 @@ body {
 
 form {
   background-color: $bg-forms;
-}
-
-/* Sidebar Styles */
-
-.sidebar-nav {
-  position: absolute;
-  top: 0;
-  width: 75px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.assign-nav {
-  list-style: none;
-  padding: 0;
-}
-
-.sidebar-nav li {
-  transition: all 0.5s ease;
-  span {
-    display: block;
-    width: 100%;
-  }
-  &:hover,
-  &.active-menu {
-    background: #42588A;
-  }
-  &:focus {
-    outline: none;
-  }
-  ul {
-    list-style: none;
-    padding: 0;
-    li {
-      a {
-        color: white;
-        padding: 8px 0;
-      }
-    }
-  }
-  a {
-    &:focus {
-      outline: none;
-    }
-  }
-}
-
-.sidebar-nav li a {
-  display: block;
-  text-decoration: none;
-  color: #fff;
-  text-align: center;
-  transition: all 0.5s ease;
-}
-
-.sidebar-nav li a:hover {
-  text-decoration: none;
-  color: #fff;
-  background: $menu-hover;
-}
-
-.sidebar-nav li a:active-menu,
-.sidebar-nav li a:focus {
-  text-decoration: none;
-  background: $menu-hover;
-  outline: none;
 }
 
 ///forms////
@@ -185,7 +98,17 @@ form {
 
 ///// Field required. ////
 .form-control.required, input.required, select.required {
-  border-color: $red;
+  border-color: $red !important;
+}
+span {
+	&.required {
+		color: $red;
+		position: absolute;
+	}
+}
+
+.form-group {
+	padding-bottom: 15px;
 }
 
 //// CHECKBOX - RADIOBUTTON /////
@@ -197,35 +120,34 @@ input[type=radio]:focus {
 }
 
 @media(min-width:768px) {
-  #wrapper {
-    padding-left: 75px;
-  }
-  #wrapper.toggled {
-    padding-left: 0;
-  }
-  #sidebar-wrapper {
-    width: 75px;
-  }
-  #wrapper.toggled #sidebar-wrapper {
-    width: 0;
-  }
-  #page-content-wrapper {
-    position: relative;
-    overflow-y: auto;
-  }
-  #wrapper.toggled #page-content-wrapper {
-    position: relative;
-    margin-right: 0;
-  }
+	#wrapper {
+		padding-left: 75px;
+	}
+	#wrapper.toggled {
+		padding-left: 250px;
+	}
+	#sidebar-wrapper {
+		width: 75px;
+	}
+	#wrapper.toggled #sidebar-wrapper {
+		width: 250px;
+	}
+	#page-content-wrapper {
+		position: relative;
+		overflow-y: auto;
+	}
+	#wrapper.toggled #page-content-wrapper {
+		position: relative;
+		margin-right: 0;
+	}
 }
 
-//////////////////////////fin estilos DAvid Camilo//////////////////////
 @mixin br($px) {
-	-webkit-border-radius: $px;
-	-moz-border-radius: $px;
-	-ms-border-radius: $px;
-	-o-border-radius: $px;
-	border-radius: $px;
+	-webkit-border-radius: $px !important;
+	-moz-border-radius: $px !important;
+	-ms-border-radius: $px !important;
+	-o-border-radius: $px !important;
+	border-radius: $px !important;
 }
 
 input, select {
@@ -252,6 +174,10 @@ input, select, textarea, button {
 	text-overflow: ellipsis;
 	-webkit-box-shadow: none !important;
 	box-shadow: none !important;
+	font-size: 12px !important;
+	@media #{$f-md}{
+		font-size: 14px !important;
+	}
 }
 
 textarea {
@@ -289,15 +215,16 @@ hr {
 }
 
 .btn {
-	color: $white;
-	min-height: 36px;
-	min-width: 130px;
-	background-color: $btn;
+	color: $white !important;
+	min-height: 36px !important;
+	min-width: 130px !important;
+	background-color: $btn !important;
+	outline: none !important;
 	@include br(4px);
 	
 	&:hover, &:focus, &:active {
-		background-color: $hover-btn;
-		color: $white;
+		background-color: $hover-btn !important;
+		color: $white !important;
 	}
 }
 
@@ -307,5 +234,53 @@ hr {
 		color: $bdc;
 	}
 	padding-bottom: 10px;
+}
+
+.flex {
+	@media #{$f-sm}{
+		display: flex;
+	}
+}
+
+.swal2-modal{
+	font-family: 'Roboto', sans-serif !important;
+	width: 450px !important;
+	@include br(0);
+	
+	button[class*='confirm'] {
+		@extend .btn;
+		padding: 6px 32px;
+	}
+	
+	button[class*='cancel'] {
+		background: none !important;
+		color: $label;
+		text-decoration: underline;
+		outline: none;
+		&:hover, &:focus, &:active {
+			opacity: 0.6;
+		}
+	}
+	
+	#modalContentId {
+		font-size: 12px;
+		@media #{$f-md}{
+			font-size: 14px;
+		}
+		font-weight: 400;
+		padding-top: 15px;
+		padding-bottom: 10px;
+	}
+	
+	.swal2-icon {
+		&.swal2-success {
+			border-color: $btn !important;
+			span {
+				&.line {
+					background-color: $btn !important;
+				}
+			}
+		}
+	}
 }
 

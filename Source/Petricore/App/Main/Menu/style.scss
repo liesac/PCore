@@ -6,16 +6,12 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-
 /* define a fixed width for the entire menu */
-
 .navigation {
     width: 300px;
 }
 
-
 /* reset our lists to remove bullet points and padding */
-
 .mainmenu,
 .submenu,
 .submenuu {
@@ -24,24 +20,21 @@ body {
     margin: 0;
 }
 
-
 /* make ALL links (main and submenu) have padding and background color */
-
-.mainmenu a {
-    display: block;
-    background-color: $menu;
-    text-decoration: none;
-    padding: 10px;
-    color: #000;
-}
-
-
-
-
 .mainmenu {
-	
+	position: absolute;
+	top: 0;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	list-style: none;
 	a {
-		/* add hover behaviour */
+		display: block;
+		background-color: $menu;
+		text-decoration: none;
+		padding: 10px;
+		color: $white;
+		
 		&:hover, &:active, &:focus {
     		background-color: $menu-hover;
 		}
@@ -49,25 +42,25 @@ body {
 	
 	> li {
 		border-bottom: 1px solid $white;
+		> a {
+			font-size: 15px;
+			text-align: center;
+		}
 	}
 }
 
-
-/* when hovering over a .mainmenu item,
- display the submenu inside it.
- we're changing the submenu's max-height from 0 to 200px;
-*/
-
-.mainmenu li:hover .submenu {
-    display: block;
-    height: auto;
-    max-height: 2000px;
-}
-
-.submenu li:hover .submenuu {
-    display: block;
-    height: auto;
-    max-height: 2000px;
+#wrapper {
+	&.toggled {
+		#sidebar-wrapper {
+			li.open {
+				> .submenu {
+					display: block;
+					height: auto;
+					max-height: 100%;
+				}
+			}
+		}		
+	}
 }
 
 
@@ -102,4 +95,18 @@ body {
     overflow: hidden;
     max-height: 0;
     -webkit-transition: all 0.5s ease-out;
+	a {
+		padding-left: 15px;
+	}
+}
+
+.ham {
+	min-height: 48px;
+	color: $white;
+	text-align: center;
+	padding-top: 15px;
+	cursor: pointer;
+	&:hover, &:active, &:focus {
+		background-color: $menu-hover;
+	}
 }

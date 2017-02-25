@@ -2,12 +2,11 @@
 <div id="sidebar-wrapper">
     <nav class="navigation">
         <ul class="sidebar-nav mainmenu">
-            <li class="ham">
-                <a href="">
-                -
-            </a>
+            <li class="ham" ng-click="toggle()">
+                Menú
             </li>
-            <li ng-repeat="menuOption in menuOptions">
+            <li ng-repeat="menuOption in menuOptions" ng-class="{'open': clicked}" ng-click="clicked = !clicked">
+                <!--<img ng-repeat="image in menuImg track by $index" ng-src="{{ image.im }}" alt="{{ image.name }}">-->
                 <a href="" ng-click="navigateTo(menuOption.Url);"><span>{{menuOption.Title}}</span></a>
 
                 <ul ng-repeat="subMenu in menuOption.Children" class="submenu">
