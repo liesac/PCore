@@ -128,6 +128,7 @@ function MainController($scope, $log, $location, $rootScope, appSettings, oilFie
             confirmButtonText: 'Close'
         });
         getWellListDropDowns();
+        $scope.wellForm.$setPristine();
     };
 
     var onUpdateError = function (error) {
@@ -225,7 +226,6 @@ function MainController($scope, $log, $location, $rootScope, appSettings, oilFie
                 $scope.models[model] = '';
             }
         }
-        $scope.wellForm.$setPristine();
     };
 
     $scope.getOilFieldInfo = function () {
@@ -246,7 +246,7 @@ function MainController($scope, $log, $location, $rootScope, appSettings, oilFie
         } else {
             resetModels();
         }
-
+        $scope.wellForm.$setPristine();
     };
 
     $scope.getUnitSystem = function () {
