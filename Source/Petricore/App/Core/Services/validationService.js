@@ -312,7 +312,7 @@ function validationService() {
         var returnObj = {
             validation: 'isRequired',
             isValid: false,
-            message: 'Field required.'
+            message: 'Required'
         };
 
         if (value != undefined && value.toString().length > 0) {
