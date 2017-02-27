@@ -13,6 +13,7 @@ function MainController($scope, $log, $location, $rootScope, appSettings, oilFie
         $scope.configValidation = configValidation == null ? [] : configValidation;
         $scope.isUpdateWell = $location.path().search('update') >= 0;
         $scope.models = {};
+        $scope.modelsLists = {};
         populateForm();
         setConstants();
         $rootScope.$emit('breadcrumbChange', {
@@ -24,31 +25,31 @@ function MainController($scope, $log, $location, $rootScope, appSettings, oilFie
     /*CallBacks*/
 
     var onGetClassificationWells = function (data) {
-        $scope.models.classificationWell = data;
+        $scope.modelsLists.classificationWell = data;
     };
 
     var onGetWellOperators = function (data) {
-        $scope.models.wellOperator = data;
+        $scope.modelsLists.wellOperator = data;
     };
 
     var onGetWellStatus = function (data) {
-        $scope.models.wellStatus = data;
+        $scope.modelsLists.wellStatus = data;
     };
 
     var onGetMudLoggingUnits = function (data) {
-        $scope.models.mudLoggingUnit = data;
+        $scope.modelsLists.mudLoggingUnit = data;
     };
 
     var onGetUnitSystems = function (data) {
-        $scope.models.unitSystem = data;
+        $scope.modelsLists.unitSystem = data;
     };
 
     var onGetRigs = function (data) {
-        $scope.models.rig = data;
+        $scope.modelsLists.rig = data;
     };
 
     var onGetOilFields = function (data) {
-        $scope.models.oilFields = data;
+        $scope.modelsLists.oilFields = data;
     };
 
     var onGetOilFieldsById = function (data) {
@@ -86,7 +87,7 @@ function MainController($scope, $log, $location, $rootScope, appSettings, oilFie
     };
 
     var onGetUnitSystemById = function (data) {
-        $scope.models.intervalDepthUnit = data;
+        $scope.modelsLists.intervalDepthUnit = data;
         if (data.length === 1) {
             $scope.models.intervalDepthUnitId = data[0].Id;
         }
@@ -256,7 +257,7 @@ function MainController($scope, $log, $location, $rootScope, appSettings, oilFie
             }];
             utilService.getUnitSystemById(urlParameters, onGetUnitSystemById, onError);
         } else {
-            $scope.models.intervalDepthUnit = [];
+            $scope.modelsLists.intervalDepthUnit = [];
         }
     };
 

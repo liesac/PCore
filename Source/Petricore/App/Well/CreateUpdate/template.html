@@ -11,7 +11,7 @@
 		</div>
 		<div class="clearfix">
 			<div class="form-group col-xs-24 col-sm-12 col-md-6">
-				<label for="wellId" class="m">Well ID {{addFormClicked}}</label>
+				<label for="wellId" class="m">Well ID</label>
 				<input type="text" class="form-control" id="wellId" maxlength="50" ng-model="models.wellId" data-isRequired="true"
 					   data-isRequired="true" ng-disabled="!models.wellListId && isUpdateWell" custom-validation-ceo>
 			</div>
@@ -23,7 +23,7 @@
 			<div class="form-group col-xs-24 col-sm-12 col-md-6">
 				<label for="wellStatus" class="m">Well Status</label>
 				<select class="form-control" id="wellStatus" ng-model="models.wellStatusId"
-						ng-options="option.Id as option.Name for option in models.wellStatus" data-isRequired="true"
+						ng-options="option.Id as option.Name for option in modelsLists.wellStatus" data-isRequired="true"
 						ng-disabled="!models.wellListId && isUpdateWell" custom-validation-ceo>
 					<option value="">Please select...</option>
 				</select>
@@ -31,7 +31,7 @@
 			<div class="form-group col-xs-24 col-sm-12 col-md-6">
 				<label for="unitSystem" class="m">Unit System</label>
 				<select class="form-control" id="unitSystem" ng-model="models.unitSystemId"
-						ng-options="option.Id as option.Name for option in models.unitSystem" data-isRequired="true" ng-change="getUnitSystem()"
+						ng-options="option.Id as option.Name for option in modelsLists.unitSystem" data-isRequired="true" ng-change="getUnitSystem()"
 						ng-disabled="!models.wellListId && isUpdateWell" custom-validation-ceo>
 					<option value="">Please select...</option>
 				</select>
@@ -42,7 +42,7 @@
 				<label for="oilFields" class="m">Oil Field</label>
 				<select class="form-control" id="oilFields" ng-model="models.oilFieldId"
 						ng-change="getOilFieldInfo()"
-						ng-options="option.Id as option.Name for option in models.oilFields" data-isRequired="true"
+						ng-options="option.Id as option.Name for option in modelsLists.oilFields" data-isRequired="true"
 						ng-disabled="!models.wellListId && isUpdateWell" custom-validation-ceo>
 					<option value="">Please select...</option>
 				</select>
@@ -81,7 +81,7 @@
 					</div>
 					<div class="col-xs-7 col-md-9 col-lg-8 p0-l p0-r">
 						<select class="form-control" id="intervalDepthUnit" title="interval depth unit" ng-model="models.intervalDepthUnitId"
-								ng-options="option.Id as option.Symbol for option in models.intervalDepthUnit"
+								ng-options="option.Id as option.Symbol for option in modelsLists.intervalDepthUnit"
 								readonly></select>
 					</div>
 				</div>
@@ -119,7 +119,7 @@
 						<label for="classificationWell">Classification Well</label>
 						<select class="form-control" id="classificationWell"
 								ng-model="models.classificationWellId" ng-disabled="!models.wellListId && isUpdateWell"
-								ng-options="option.Id as option.Name for option in models.classificationWell">
+								ng-options="option.Id as option.Name for option in modelsLists.classificationWell">
 							<option value="">Please select...</option>
 						</select>
 					</div>
@@ -128,7 +128,7 @@
 					<div class="form-group col-xs-24 col-sm-8">
 						<label for="wellOperator">Well Operator</label>
 						<select class="form-control" id="wellOperator" ng-model="models.wellOperatorId"
-								ng-options="option.Id as option.Name for option in models.wellOperator"
+								ng-options="option.Id as option.Name for option in modelsLists.wellOperator"
 								ng-disabled="!models.wellListId && isUpdateWell">
 							<option value="">Please select...</option>
 						</select>
@@ -136,7 +136,7 @@
 					<div class="form-group col-xs-24 col-sm-8">
 						<label for="rig">Rig</label>
 						<select class="form-control" id="rig" ng-model="models.rigId"
-								ng-options="option.Id as option.Name for option in models.rig"
+								ng-options="option.Id as option.Name for option in modelsLists.rig"
 								ng-disabled="!models.wellListId && isUpdateWell">
 							<option value="">Please select...</option>
 						</select>
@@ -144,7 +144,7 @@
 					<div class="form-group col-xs-24 col-sm-8">
 						<label for="mudLoggingUnit">MudLogging Unit</label>
 						<select class="form-control" id="mudLoggingUnit" ng-model="models.mudLoggingUnitId"
-								ng-options="option.Id as option.Name for option in models.mudLoggingUnit"
+								ng-options="option.Id as option.Name for option in modelsLists.mudLoggingUnit"
 								ng-disabled="!models.wellListId && isUpdateWell">
 							<option value="">Please select...</option>
 						</select>
