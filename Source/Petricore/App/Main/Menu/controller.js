@@ -6,9 +6,12 @@ function MainController($scope, $rootScope, $log, $location, $state, sessionStor
     };
 
     $scope.navigateTo = function (route) {
-        $scope.actualRoute = route;
-        $state.go(route);
-        $scope.toggle();
+        if(route !== '#'){
+            $scope.actualRoute = route;
+            $state.go(route);
+            $scope.toggle();
+        }
+
     };
     
     $scope.toggle = function () {

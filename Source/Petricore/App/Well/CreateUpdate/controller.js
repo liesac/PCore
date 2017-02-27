@@ -220,8 +220,11 @@ function MainController($scope, $log, $location, $rootScope, appSettings, oilFie
 
     var resetModels = function () {
         for (var model in $scope.models) {
-            $scope.models[model] = '';
+            if(model !== 'wellList'){
+                $scope.models[model] = '';
+            }
         }
+        $scope.wellForm.$setPristine();
     };
 
     $scope.getOilFieldInfo = function () {

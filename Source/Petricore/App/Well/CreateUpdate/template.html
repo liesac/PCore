@@ -11,7 +11,7 @@
 		</div>
 		<div class="clearfix">
 			<div class="form-group col-xs-24 col-sm-12 col-md-6">
-				<label for="wellId" class="m">Well ID</label>
+				<label for="wellId" class="m">Well ID {{addFormClicked}}</label>
 				<input type="text" class="form-control" id="wellId" maxlength="50" ng-model="models.wellId" data-isRequired="true"
 					   data-isRequired="true" ng-disabled="!models.wellListId && isUpdateWell" custom-validation-ceo>
 			</div>
