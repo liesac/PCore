@@ -74,16 +74,29 @@
 				</div>
 				<div class="clearfix">
 					<div class="col-xs-17 col-md-15  col-lg-16 p0-l" ng-if="models.intervalDepthUnitId === 2">
-						<input type="number" step="0.1" class="form-control" id="intervalDepth"
-							   ng-model="models.intervalDepth" ng-disabled="!models.wellListId && isUpdateWell"
-							   data-isRequired="true" custom-validation-ceo >
+						<input type="number"
+							   step="0.1"
+							   class="form-control"
+							   id="intervalDepth"
+							   ng-model="models.intervalDepth"
+							   ng-disabled="!models.wellListId && isUpdateWell"
+							   data-isRequired="true"
+							   custom-validation-ceo >
 					</div>
 					<div class="col-xs-17 col-md-15  col-lg-16 p0-l" ng-if="models.intervalDepthUnitId !== 2">
-						<input type="number" class="form-control" id="intervalDepth" ng-pattern="/^(0|\-?[1-9][0-9]*)$/"
-							   ng-model="models.intervalDepth" ng-disabled="!models.wellListId && isUpdateWell"
-							   data-isRequired="true" custom-validation-ceo >
+						<input type="number"
+							   ng-class="{'required': (wellForm.$error.pattern || wellForm.$error.required )}"
+							   class="form-control"
+							   id="intervalDepth"
+							   ng-pattern="/^(0|\-?[1-9][0-9]*)$/"
+							   ng-model="models.intervalDepth"
+							   ng-disabled="!models.wellListId && isUpdateWell"
+							   ng-required="true"
+							   custom-validation-ceo >
 						<span ng-show="wellForm.$error.pattern" class="required ng-binding ng-scope">
 						Please, only integer numbers</span>
+						<span ng-show="wellForm.$error.required" class="required ng-binding ng-scope">
+						Required</span>
 					</div>
 					<div class="col-xs-7 col-md-9 col-lg-8 p0-l p0-r">
 						<select class="form-control" id="intervalDepthUnit" title="interval depth unit" ng-model="models.intervalDepthUnitId"
@@ -133,7 +146,8 @@
 				<div class="clearfix">				
 					<div class="form-group col-xs-24 col-sm-8">
 						<label for="wellOperator">Well Operator</label>
-						<select class="form-control" id="wellOperator" ng-model="models.wellOperatorId"
+						<select class="form-control" id="wellOperator"
+								ng-model="models.wellOperatorId"
 								ng-options="option.Id as option.Name for option in modelsLists.wellOperator"
 								ng-disabled="!models.wellListId && isUpdateWell">
 							<option value="">Please select...</option>
@@ -210,6 +224,6 @@
 		Well created correctly
 	</div>
 	<div class="modal-footer text-center">
-		<button class="btn" type="button" ng-click="dismissModal()">Close</button>
+		<button class="btn" type="button" ng-click="dismissModal()" autofocus>Close</button>
 	</div>
 </script>

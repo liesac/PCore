@@ -62,6 +62,10 @@ function MainController($scope, $log, $location, $rootScope, appSettings, oilFie
         $scope.models.wellList = data;
     };
 
+    var getValidDataAccordingAnotherField = function(fieldToValidate, fielToReturn){
+        return fieldToValidate ? fielToReturn : null;
+    };
+
     var onGetWellById = function (data) {
         $scope.models.wellId = data.IdWell;
         $scope.models.wellName = data.NameWell;
@@ -73,10 +77,14 @@ function MainController($scope, $log, $location, $rootScope, appSettings, oilFie
         $scope.models.intervalDepthUnitId = '';
         $scope.models.initializeDepth = data.InitializeDepth;
         $scope.models.spudDate = data.SpudDate ? moment(data.SpudDate).format('MM/DD/YYYY') : '';
-        $scope.models.classificationWellId = data.ClasificationWell.Id;
-        $scope.models.wellOperatorId = data.WellOperator.Id;
-        $scope.models.rigId = data.Rig.Id;
-        $scope.models.mudLoggingUnitId = data.MudLoggingUnit.Id;
+        $scope.models.classificationWellId = getValidDataAccordingAnotherField(data.IdClasificationWell,
+                                                                                    data.ClasificationWell.Id);
+        $scope.models.wellOperatorId = getValidDataAccordingAnotherField(data.IdWellOperator,
+                                                                            data.WellOperator.Id);
+        $scope.models.rigId = getValidDataAccordingAnotherField(data.IdRig,
+                                                                data.Rig.Id);
+        $scope.models.mudLoggingUnitId = getValidDataAccordingAnotherField(data.IdMudLoggingUnit,
+                                                                                data.MudLoggingUnit.Id);
         $scope.models.comments = data.Comments;
         $scope.models.latitude = data.Latitude;
         $scope.models.longitude = data.Longitude;
@@ -288,7 +296,6 @@ function MainController($scope, $log, $location, $rootScope, appSettings, oilFie
     //Validations
     $scope.configCustomValidation = function (config, executeValidation) {
         $scope.configValidation[config.id] = config;
-
         if (executeValidation == true) {
             $scope.wellForm[config.id].$validate();
         }
