@@ -133,7 +133,8 @@ function MainController($scope, $log, $location, $rootScope, appSettings, oilFie
         swal({
             text: 'Well updated correctly',
             type: 'success',
-            confirmButtonText: 'Close'
+            confirmButtonText: 'Close',
+            confirmButtonColor: '#79cda3',
         });
         getWellListDropDowns();
         $scope.wellForm.$setPristine();

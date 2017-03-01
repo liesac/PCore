@@ -220,19 +220,22 @@ hr {
 	padding-right: 0;
 }
 
-.btn {
-	color: $white !important;
-	min-height: 36px !important;
-	min-width: 130px !important;
-	background-color: $btn !important;
-	outline: none !important;
-	@include br(4px);
-	
-	&:hover, &:focus, &:active {
-		background-color: $hover-btn !important;
+.home {
+	.btn {
 		color: $white !important;
+		min-height: 36px !important;
+		min-width: 130px !important;
+		background-color: $btn !important;
+		outline: none !important;
+		@include br(4px);
+
+		&:hover, &:focus, &:active {
+			background-color: $hover-btn !important;
+			color: $white !important;
+		}
 	}
 }
+
 
 .bdc {
 	span {
