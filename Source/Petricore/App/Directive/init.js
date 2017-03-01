@@ -5,6 +5,7 @@ var customFormat = require('./CustomFormat/customFormat');
 var autocomplete = require('./CustomAutocomplete/autocomplete');
 var autocompleteB = require('./CustomAutocompleteB/autocompleteB');
 var customValidationCeo = require('./CustomValidationCeo/customValidationCeo');
+var onlyNumbers = require('./OnlyNumbers/onlyNumbers.directive');
 //new objects from directives will be placed here
 
 module.exports = angular.module('Petricore.Directives', [])
@@ -13,5 +14,6 @@ module.exports = angular.module('Petricore.Directives', [])
     .directive('customFormat', customFormat)
     .directive('customAutocomplete', autocomplete)
     .directive('customAutocompleteB', autocompleteB)
-    .directive('customValidationCeo', customValidationCeo);
+    .directive('customValidationCeo', customValidationCeo)
+    .directive('onlyNumbers', onlyNumbers);
 

@@ -64,8 +64,18 @@
 		<div class="clearfix">
 			<div class="form-group col-xs-24 col-sm-12 col-md-6">
 				<label for="intervalTime" class="m">Interval Time (seg)</label>
-				<input type="number" class="form-control" id="intervalTime" maxlength="3" data-typeValidation="number" data-maxValue="120" data-minValue="0"
-					   ng-disabled="!models.wellListId && isUpdateWell" ng-model="models.intervalTime" data-isRequired="true" custom-validation-ceo>
+				<input type="text"
+					   class="form-control"
+					   id="intervalTime"
+					   maxlength="3"
+					   data-typeValidation="number"
+					   data-maxValue="120"
+					   data-minValue="0"
+					   ng-disabled="!models.wellListId && isUpdateWell"
+					   ng-model="models.intervalTime"
+					   data-isRequired="true"
+					   only-numbers
+					   custom-validation-ceo>
 			</div>
 			<div class="form-group col-xs-24 col-sm-12 col-md-6">
 				<div class="clearfix">
