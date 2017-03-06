@@ -290,3 +290,10 @@ hr {
 	}
 }
 
+
+.header {
+	position: fixed;
+	min-height: 60px;
+	width: 100%;
+	background-color: $header-bg;
+}
