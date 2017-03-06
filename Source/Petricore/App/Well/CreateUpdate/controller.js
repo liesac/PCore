@@ -13,6 +13,7 @@ function MainController($scope, $log, $location, $rootScope, appSettings, oilFie
         $scope.configValidation = configValidation == null ? [] : configValidation;
         $scope.isUpdateWell = $location.path().search('update') >= 0;
         $scope.models = {};
+        $scope.modelsLists = {};
         populateForm();
         setConstants();
         $rootScope.$emit('breadcrumbChange', {
@@ -24,31 +25,31 @@ function MainController($scope, $log, $location, $rootScope, appSettings, oilFie
     /*CallBacks*/
 
     var onGetClassificationWells = function (data) {
-        $scope.models.classificationWell = data;
+        $scope.modelsLists.classificationWell = data;
     };
 
     var onGetWellOperators = function (data) {
-        $scope.models.wellOperator = data;
+        $scope.modelsLists.wellOperator = data;
     };
 
     var onGetWellStatus = function (data) {
-        $scope.models.wellStatus = data;
+        $scope.modelsLists.wellStatus = data;
     };
 
     var onGetMudLoggingUnits = function (data) {
-        $scope.models.mudLoggingUnit = data;
+        $scope.modelsLists.mudLoggingUnit = data;
     };
 
     var onGetUnitSystems = function (data) {
-        $scope.models.unitSystem = data;
+        $scope.modelsLists.unitSystem = data;
     };
 
     var onGetRigs = function (data) {
-        $scope.models.rig = data;
+        $scope.modelsLists.rig = data;
     };
 
     var onGetOilFields = function (data) {
-        $scope.models.oilFields = data;
+        $scope.modelsLists.oilFields = data;
     };
 
     var onGetOilFieldsById = function (data) {
@@ -59,6 +60,10 @@ function MainController($scope, $log, $location, $rootScope, appSettings, oilFie
 
     var onGetWellListDropDowns = function (data) {
         $scope.models.wellList = data;
+    };
+
+    var getValidDataAccordingAnotherField = function(fieldToValidate, fielToReturn){
+        return fieldToValidate ? fielToReturn : null;
     };
 
     var onGetWellById = function (data) {
@@ -72,10 +77,14 @@ function MainController($scope, $log, $location, $rootScope, appSettings, oilFie
         $scope.models.intervalDepthUnitId = '';
         $scope.models.initializeDepth = data.InitializeDepth;
         $scope.models.spudDate = data.SpudDate ? moment(data.SpudDate).format('MM/DD/YYYY') : '';
-        $scope.models.classificationWellId = data.ClasificationWell.Id;
-        $scope.models.wellOperatorId = data.WellOperator.Id;
-        $scope.models.rigId = data.Rig.Id;
-        $scope.models.mudLoggingUnitId = data.MudLoggingUnit.Id;
+        $scope.models.classificationWellId = getValidDataAccordingAnotherField(data.IdClasificationWell,
+                                                                                    data.ClasificationWell.Id);
+        $scope.models.wellOperatorId = getValidDataAccordingAnotherField(data.IdWellOperator,
+                                                                            data.WellOperator.Id);
+        $scope.models.rigId = getValidDataAccordingAnotherField(data.IdRig,
+                                                                data.Rig.Id);
+        $scope.models.mudLoggingUnitId = getValidDataAccordingAnotherField(data.IdMudLoggingUnit,
+                                                                                data.MudLoggingUnit.Id);
         $scope.models.comments = data.Comments;
         $scope.models.latitude = data.Latitude;
         $scope.models.longitude = data.Longitude;
@@ -86,7 +95,7 @@ function MainController($scope, $log, $location, $rootScope, appSettings, oilFie
     };
 
     var onGetUnitSystemById = function (data) {
-        $scope.models.intervalDepthUnit = data;
+        $scope.modelsLists.intervalDepthUnit = data;
         if (data.length === 1) {
             $scope.models.intervalDepthUnitId = data[0].Id;
         }
@@ -124,9 +133,11 @@ function MainController($scope, $log, $location, $rootScope, appSettings, oilFie
         swal({
             text: 'Well updated correctly',
             type: 'success',
-            confirmButtonText: 'Close'
+            confirmButtonText: 'Close',
+            confirmButtonColor: '#79cda3',
         });
         getWellListDropDowns();
+        $scope.wellForm.$setPristine();
     };
 
     var onUpdateError = function (error) {
@@ -224,7 +235,6 @@ function MainController($scope, $log, $location, $rootScope, appSettings, oilFie
                 $scope.models[model] = '';
             }
         }
-        $scope.wellForm.$setPristine();
     };
 
     $scope.getOilFieldInfo = function () {
@@ -245,7 +255,7 @@ function MainController($scope, $log, $location, $rootScope, appSettings, oilFie
         } else {
             resetModels();
         }
-
+        $scope.wellForm.$setPristine();
     };
 
     $scope.getUnitSystem = function () {
@@ -256,7 +266,7 @@ function MainController($scope, $log, $location, $rootScope, appSettings, oilFie
             }];
             utilService.getUnitSystemById(urlParameters, onGetUnitSystemById, onError);
         } else {
-            $scope.models.intervalDepthUnit = [];
+            $scope.modelsLists.intervalDepthUnit = [];
         }
     };
 
@@ -287,7 +297,6 @@ function MainController($scope, $log, $location, $rootScope, appSettings, oilFie
     //Validations
     $scope.configCustomValidation = function (config, executeValidation) {
         $scope.configValidation[config.id] = config;
-
         if (executeValidation == true) {
             $scope.wellForm[config.id].$validate();
         }

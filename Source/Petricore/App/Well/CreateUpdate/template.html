@@ -11,8 +11,8 @@
 		</div>
 		<div class="clearfix">
 			<div class="form-group col-xs-24 col-sm-12 col-md-6">
-				<label for="wellId" class="m">Well ID {{addFormClicked}}</label>
-				<input type="text" class="form-control" id="wellId" maxlength="50" ng-model="models.wellId" data-isRequired="true"
+				<label for="wellId" class="m">Well ID</label>
+				<input type="text" class="form-control" id="wellId" maxlength="50" ng-model="models.wellId"
 					   data-isRequired="true" ng-disabled="!models.wellListId && isUpdateWell" custom-validation-ceo>
 			</div>
 			<div class="form-group col-xs-24 col-sm-12 col-md-6">
@@ -23,7 +23,7 @@
 			<div class="form-group col-xs-24 col-sm-12 col-md-6">
 				<label for="wellStatus" class="m">Well Status</label>
 				<select class="form-control" id="wellStatus" ng-model="models.wellStatusId"
-						ng-options="option.Id as option.Name for option in models.wellStatus" data-isRequired="true"
+						ng-options="option.Id as option.Name for option in modelsLists.wellStatus" data-isRequired="true"
 						ng-disabled="!models.wellListId && isUpdateWell" custom-validation-ceo>
 					<option value="">Please select...</option>
 				</select>
@@ -31,7 +31,7 @@
 			<div class="form-group col-xs-24 col-sm-12 col-md-6">
 				<label for="unitSystem" class="m">Unit System</label>
 				<select class="form-control" id="unitSystem" ng-model="models.unitSystemId"
-						ng-options="option.Id as option.Name for option in models.unitSystem" data-isRequired="true" ng-change="getUnitSystem()"
+						ng-options="option.Id as option.Name for option in modelsLists.unitSystem" data-isRequired="true" ng-change="getUnitSystem()"
 						ng-disabled="!models.wellListId && isUpdateWell" custom-validation-ceo>
 					<option value="">Please select...</option>
 				</select>
@@ -42,7 +42,7 @@
 				<label for="oilFields" class="m">Oil Field</label>
 				<select class="form-control" id="oilFields" ng-model="models.oilFieldId"
 						ng-change="getOilFieldInfo()"
-						ng-options="option.Id as option.Name for option in models.oilFields" data-isRequired="true"
+						ng-options="option.Id as option.Name for option in modelsLists.oilFields" data-isRequired="true"
 						ng-disabled="!models.wellListId && isUpdateWell" custom-validation-ceo>
 					<option value="">Please select...</option>
 				</select>
@@ -64,8 +64,18 @@
 		<div class="clearfix">
 			<div class="form-group col-xs-24 col-sm-12 col-md-6">
 				<label for="intervalTime" class="m">Interval Time (seg)</label>
-				<input type="number" class="form-control" id="intervalTime" maxlength="3" data-typeValidation="number" data-maxValue="120" data-minValue="0"
-					   ng-disabled="!models.wellListId && isUpdateWell" ng-model="models.intervalTime" data-isRequired="true" custom-validation-ceo>
+				<input type="text"
+					   class="form-control"
+					   id="intervalTime"
+					   maxlength="3"
+					   data-typeValidation="number"
+					   data-maxValue="120"
+					   data-minValue="0"
+					   ng-disabled="!models.wellListId && isUpdateWell"
+					   ng-model="models.intervalTime"
+					   data-isRequired="true"
+					   only-numbers
+					   custom-validation-ceo>
 			</div>
 			<div class="form-group col-xs-24 col-sm-12 col-md-6">
 				<div class="clearfix">
@@ -73,15 +83,34 @@
 					<hr>
 				</div>
 				<div class="clearfix">
-					<div class="col-xs-17 col-md-15  col-lg-16 p0-l">
-						<input type="number" step="0.1" class="form-control" id="intervalDepth"
-							   ng-model="models.intervalDepth" ng-disabled="!models.wellListId && isUpdateWell"
-							   data-isRequired="true" custom-validation-ceo>
-
+					<div class="col-xs-17 col-md-15  col-lg-16 p0-l" ng-if="models.intervalDepthUnitId === 2">
+						<input type="number"
+							   step="0.1"
+							   class="form-control"
+							   id="intervalDepth"
+							   ng-model="models.intervalDepth"
+							   ng-disabled="!models.wellListId && isUpdateWell"
+							   data-isRequired="true"
+							   custom-validation-ceo >
+					</div>
+					<div class="col-xs-17 col-md-15  col-lg-16 p0-l" ng-if="models.intervalDepthUnitId !== 2">
+						<input type="number"
+							   ng-class="{'required': (wellForm.$error.pattern || wellForm.$error.required )}"
+							   class="form-control"
+							   id="intervalDepth"
+							   ng-pattern="/^(0|\-?[1-9][0-9]*)$/"
+							   ng-model="models.intervalDepth"
+							   ng-disabled="!models.wellListId && isUpdateWell"
+							   ng-required="true"
+							   custom-validation-ceo >
+						<span ng-show="wellForm.$error.pattern" class="required ng-binding ng-scope">
+						Please, only integer numbers</span>
+						<span ng-show="wellForm.$error.required" class="required ng-binding ng-scope">
+						Required</span>
 					</div>
 					<div class="col-xs-7 col-md-9 col-lg-8 p0-l p0-r">
 						<select class="form-control" id="intervalDepthUnit" title="interval depth unit" ng-model="models.intervalDepthUnitId"
-								ng-options="option.Id as option.Symbol for option in models.intervalDepthUnit"
+								ng-options="option.Id as option.Symbol for option in modelsLists.intervalDepthUnit"
 								readonly></select>
 					</div>
 				</div>
@@ -119,7 +148,7 @@
 						<label for="classificationWell">Classification Well</label>
 						<select class="form-control" id="classificationWell"
 								ng-model="models.classificationWellId" ng-disabled="!models.wellListId && isUpdateWell"
-								ng-options="option.Id as option.Name for option in models.classificationWell">
+								ng-options="option.Id as option.Name for option in modelsLists.classificationWell">
 							<option value="">Please select...</option>
 						</select>
 					</div>
@@ -127,8 +156,9 @@
 				<div class="clearfix">				
 					<div class="form-group col-xs-24 col-sm-8">
 						<label for="wellOperator">Well Operator</label>
-						<select class="form-control" id="wellOperator" ng-model="models.wellOperatorId"
-								ng-options="option.Id as option.Name for option in models.wellOperator"
+						<select class="form-control" id="wellOperator"
+								ng-model="models.wellOperatorId"
+								ng-options="option.Id as option.Name for option in modelsLists.wellOperator"
 								ng-disabled="!models.wellListId && isUpdateWell">
 							<option value="">Please select...</option>
 						</select>
@@ -136,7 +166,7 @@
 					<div class="form-group col-xs-24 col-sm-8">
 						<label for="rig">Rig</label>
 						<select class="form-control" id="rig" ng-model="models.rigId"
-								ng-options="option.Id as option.Name for option in models.rig"
+								ng-options="option.Id as option.Name for option in modelsLists.rig"
 								ng-disabled="!models.wellListId && isUpdateWell">
 							<option value="">Please select...</option>
 						</select>
@@ -144,7 +174,7 @@
 					<div class="form-group col-xs-24 col-sm-8">
 						<label for="mudLoggingUnit">MudLogging Unit</label>
 						<select class="form-control" id="mudLoggingUnit" ng-model="models.mudLoggingUnitId"
-								ng-options="option.Id as option.Name for option in models.mudLoggingUnit"
+								ng-options="option.Id as option.Name for option in modelsLists.mudLoggingUnit"
 								ng-disabled="!models.wellListId && isUpdateWell">
 							<option value="">Please select...</option>
 						</select>
@@ -188,7 +218,13 @@
 	</div>
 	<div class="clearfix">
 		<div class="col-xs-24 text-center">
-			<button type="submit" class="btn" ng-click="updateWell()" ng-if="isUpdateWell">UPDATE</button>
+			<button type="submit"
+					class="btn"
+					ng-click="updateWell()"
+					ng-if="isUpdateWell"
+					ng-disabled="!wellForm.$dirty">
+				UPDATE
+			</button>
 		</div>
 	</div>
 </form>
@@ -198,6 +234,6 @@
 		Well created correctly
 	</div>
 	<div class="modal-footer text-center">
-		<button class="btn" type="button" ng-click="dismissModal()">Close</button>
+		<button class="btn" type="button" ng-click="dismissModal()" autofocus>Close</button>
 	</div>
 </script>
