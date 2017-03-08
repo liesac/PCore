@@ -20,6 +20,14 @@ body {
   	background: $white;
 	height: 100vh;
 	
+	> div {
+		height: inherit;
+		
+		.home {
+			height: inherit;
+		}
+	}
+	
 }
 
 #wrapper,
@@ -140,14 +148,6 @@ input[type=radio]:focus {
 		position: relative;
 		margin-right: 0;
 	}
-}
-
-@mixin br($px) {
-	-webkit-border-radius: $px !important;
-	-moz-border-radius: $px !important;
-	-ms-border-radius: $px !important;
-	-o-border-radius: $px !important;
-	border-radius: $px !important;
 }
 
 input, select {
@@ -291,12 +291,4 @@ hr {
 			}
 		}
 	}
-}
-
-
-.header {
-	position: fixed;
-	min-height: 60px;
-	width: 100%;
-	background-color: $header-bg;
 }

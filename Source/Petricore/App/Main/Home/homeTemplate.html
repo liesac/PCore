@@ -1,22 +1,20 @@
 <div class="home">
-    <div>
-        <header first="Viejo Juan, puedes empezar con el Header :)"></header>
+    <div class="col-xs-24 clearfix header-container">
+        <header></header>
     </div>
-  <div id="wrapper">
-    <div ui-view="menu"></div>
-    <!-- Features Content -->
-    <div id="page-content-wrapper">
-        <!-- Topbar-wrapper -->
-		<nav ui-view="topBar" class="bdc"></nav>
-		<!-- /#topbar-wrapper -->
-        <div ui-view></div>
-    </div>
-    <!-- /#features-content-wrapper -->
-
-    <!-- Footer Content -->
-    <!-- <div ui-view="footer"></div>-->
-    <!-- /#Footer-content-wrapper -->
-
-  </div>
-  <!-- /#wrapper -->
+	<div id="wrapper" class="col-xs-24 clearfix">
+		<div ui-view="menu"></div>
+		<!-- Features Content -->
+		<div id="page-content-wrapper">
+			<!-- Topbar-wrapper -->
+			<nav ui-view="topBar" class="bdc"></nav>
+			<!-- /#topbar-wrapper -->
+			<div ui-view></div>
+		</div>
+		<!-- /#features-content-wrapper -->
+		<!-- Footer Content -->
+		<!-- <div ui-view="footer"></div>-->
+		<!-- /#Footer-content-wrapper -->
+	</div>
+	<!-- /#wrapper -->
 </div>

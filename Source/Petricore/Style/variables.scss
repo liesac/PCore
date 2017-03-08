@@ -70,3 +70,12 @@ $label-border-green-blue: #78c0c3;
 $bdc: #525259;
 $header-bg: #f5f3f2;
 
+
+@mixin br($px) {
+	-webkit-border-radius: $px !important;
+	-moz-border-radius: $px !important;
+	-ms-border-radius: $px !important;
+	-o-border-radius: $px !important;
+	border-radius: $px !important;
+}
+
